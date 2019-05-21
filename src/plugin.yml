@@ -1,0 +1,6 @@
+main: com.inaiga.rpgplugin.MainClass
+name: RPGPlugin
+version: 1.0
+author: Tiago & Vasco
+description: RPG é fixe
+commands:
