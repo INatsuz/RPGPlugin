@@ -5,6 +5,6 @@ author: Tiago & Vasco
 description: RPG é fixe
 commands:
   Group:
-    usage: /<command> <Group> <TargetPlayer>
-    description: Gives a certain Group Permission to the player
+    usage: /<command> <Class> <TargetPlayer>
+    description: Gives a certain Class to the player
     permission-message: You don't have the permission to do this command.
