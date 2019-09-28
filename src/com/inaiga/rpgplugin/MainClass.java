@@ -6,6 +6,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class MainClass extends JavaPlugin {
 
+    private static MainClass instance;
+
     @Override
     public void onDisable() {
         getLogger().info("Shutting down...!");
@@ -14,6 +16,11 @@ public class MainClass extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().info("RPGPlugin just started!");
+        instance = this;
+    }
+
+    public static MainClass getInstance() {
+        return instance;
     }
 
     @Override
