@@ -6,12 +6,12 @@ public class MainClass extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        getLogger().info("Shutting down this bitch!");
+        getLogger().info("Shutting down...!");
     }
 
     @Override
     public void onEnable() {
-        getLogger().info("Bom dia! Alegria!");
+        getLogger().info("RPGPlugin just started!");
     }
 
 

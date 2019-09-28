@@ -9,3 +9,6 @@ The full attempt at a completely functional RPG style plugin for Minecraft
 4. CharacterClasses
 5. Skills
 6. Bulding?
+7. GroupsPermissions
+
+## Done
