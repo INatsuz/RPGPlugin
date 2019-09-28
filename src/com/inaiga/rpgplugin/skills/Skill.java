@@ -1,6 +1,7 @@
-package com.inaiga.rpgplugin.classes;
+package com.inaiga.rpgplugin.skills;
 
 public interface Skill {
 
     public void execute();
+
 }

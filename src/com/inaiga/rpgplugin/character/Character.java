@@ -1,12 +1,14 @@
-package com.inaiga.rpgplugin.classes;
+package com.inaiga.rpgplugin.character;
 
+import com.inaiga.rpgplugin.skills.CharacterSkill;
+import com.inaiga.rpgplugin.skills.Skill;
 import java.util.ArrayList;
 
 public class Character {
 
     private Class characterClass;
     private int level;
-    private ArrayList<Skill> skills = new ArrayList<Skill>();
+    private ArrayList<Skill> skills = new ArrayList<>();
 
     public Character(Class characterClass, int level, ArrayList<Skill> skills) {
         this.characterClass = characterClass;
@@ -38,6 +40,10 @@ public class Character {
         this.skills = skills;
     }
 
-
+    public void useSkill(Skill skill){
+        if (skills.contains(skill)){
+            skill.execute();
+        }
+    }
 
 }
