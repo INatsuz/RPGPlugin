@@ -1,6 +1,7 @@
-package com.inaiga.rpgplugin.character;
+package com.inaiga.rpgplugin.characters;
 
 import com.inaiga.rpgplugin.skills.Skill;
+import com.inaiga.rpgplugin.classes.Class;
 import java.util.ArrayList;
 
 public class Character {
@@ -13,6 +14,11 @@ public class Character {
         this.characterClass = characterClass;
         this.level = level;
         this.skills = skills;
+    }
+
+    public Character(Class characterClass, int level) {
+        this.characterClass = characterClass;
+        this.level = level;
     }
 
     public Class getCharacterClass() {

@@ -4,7 +4,15 @@ version: 1.0
 author: Tiago & Vasco
 description: RPG é fixe
 commands:
-  Group:
-    usage: /<command> <Class> <TargetPlayer>
-    description: Gives a certain Class to the player
+  class:
+    usage: /class <CharacterClass>
+    description: Creates an RPG Character
+    permission-message: You don't have the permission to do this command.
+  checkchar:
+    usage: /checkchar
+    description: Checks the classes of your characters
+    permission-message: You don't have the permission to do this command.
+  choosechar:
+    usage: /choosechar <index>
+    description: Chooses a character and sets it to your active character
     permission-message: You don't have the permission to do this command.
