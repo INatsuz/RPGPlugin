@@ -1,6 +1,6 @@
 package com.inaiga.rpgplugin.listeners;
 
-import org.bukkit.ChatColor;
+import com.inaiga.rpgplugin.player.PlayerManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,7 +11,7 @@ public class LoginListener implements Listener {
     @EventHandler
     public void PlayerJoin(PlayerJoinEvent event) {
         Player p =  event.getPlayer();
-        p.sendMessage(ChatColor.AQUA + "This is a test!");
+        PlayerManager.createPlayer(p);
     }
 
 }
