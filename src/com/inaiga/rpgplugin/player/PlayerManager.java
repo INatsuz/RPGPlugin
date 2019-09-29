@@ -24,7 +24,7 @@ public class PlayerManager {
 		Character[] characters = new Character[MAX_CHARACTERS];
 
 		try {
-			File file = new File(MainClass.getInstance().getDataFolder() + File.separator + "characters" + File.separator + player.getUniqueId().toString());
+			File file = new File(MainClass.getInstance().getDataFolder() + File.separator + "characters" + File.separator + player.getUniqueId().toString() + ".json");
 			if (!file.exists()) {
 				file.getParentFile().mkdirs();
 				file.createNewFile();
@@ -37,6 +37,7 @@ public class PlayerManager {
 				initialJson.put("characters", emptyCharacterArray);
 
 				writer.write(initialJson.toJSONString());
+				writer.close();
 			} else {
 				BufferedReader reader = new BufferedReader(new FileReader(file));
 
