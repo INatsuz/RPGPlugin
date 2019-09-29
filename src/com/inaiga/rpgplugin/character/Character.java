@@ -1,6 +1,5 @@
 package com.inaiga.rpgplugin.character;
 
-import com.inaiga.rpgplugin.skills.CharacterSkill;
 import com.inaiga.rpgplugin.skills.Skill;
 import java.util.ArrayList;
 

@@ -65,4 +65,13 @@ public class PlayerManager {
 		players.add(new RPGPlayer(player, loadPlayerCharacters(player)));
 	}
 
+	public static RPGPlayer getRPGPlayerFromPlayer(Player player) {
+        for (RPGPlayer rpgPlayer : players) {
+            if (rpgPlayer.getPlayer().getUniqueId().equals(player.getUniqueId())) {
+                return rpgPlayer;
+            }
+        }
+        return null;
+    }
+
 }
