@@ -1,5 +1,6 @@
 package com.inaiga.rpgplugin;
 
+import com.inaiga.rpgplugin.listeners.LoginListener;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,6 +17,7 @@ public class MainClass extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().info("RPGPlugin just started!");
+        getServer().getPluginManager().registerEvents(new LoginListener(), this);
         instance = this;
     }
 
