@@ -1,6 +1,7 @@
 main: com.inaiga.rpgplugin.MainClass
 name: RPGPlugin
 version: 1.0
+api-version: 1.13
 author: Tiago & Vasco
 description: RPG é fixe
 commands:
@@ -14,5 +15,9 @@ commands:
     permission-message: You don't have the permission to do this command.
   choosechar:
     usage: /choosechar <index>
+    description: Chooses a character and sets it to your active character
+    permission-message: You don't have the permission to do this command.
+  pickchar:
+    usage: /pickchar
     description: Chooses a character and sets it to your active character
     permission-message: You don't have the permission to do this command.

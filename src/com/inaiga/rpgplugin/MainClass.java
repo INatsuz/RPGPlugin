@@ -1,7 +1,9 @@
 package com.inaiga.rpgplugin;
 
 import com.inaiga.rpgplugin.characters.Character;
+import com.inaiga.rpgplugin.characters.CharacterMenu;
 import com.inaiga.rpgplugin.classes.Class;
+import com.inaiga.rpgplugin.listeners.InventoryClickListener;
 import com.inaiga.rpgplugin.listeners.LoginLogoutListener;
 import com.inaiga.rpgplugin.player.PlayerManager;
 import com.inaiga.rpgplugin.player.RPGPlayer;
@@ -23,6 +25,7 @@ public class MainClass extends JavaPlugin {
 	public void onEnable() {
 		getLogger().info("RPGPlugin just started!");
 		getServer().getPluginManager().registerEvents(new LoginLogoutListener(), this);
+		getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
 		instance = this;
 	}
 
@@ -51,6 +54,10 @@ public class MainClass extends JavaPlugin {
 
 			rpgPlayer.chooseCharacter(Integer.parseInt(args[0]));
 			sender.sendMessage("Your active character is " + rpgPlayer.getActiveCharacter().getCharacterClass());
+
+			return true;
+		} else if (label.equalsIgnoreCase("pickchar")) {
+			CharacterMenu.openCharacterMenu((Player) sender);
 
 			return true;
 		}

@@ -2,6 +2,7 @@ package com.inaiga.rpgplugin.player;
 
 import com.inaiga.rpgplugin.MainClass;
 import com.inaiga.rpgplugin.characters.Character;
+import com.inaiga.rpgplugin.classes.Class;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -96,6 +97,8 @@ public class RPGPlayer {
 
                 for (int i = 0; i < characterArray.size(); i++) {
                     JSONObject characterJson = (JSONObject) characterArray.get(i);
+
+                    characters[i] = new Character(Class.valueOf(characterJson.get("class").toString()), Integer.parseInt(characterJson.get("level").toString()));
 
                     System.out.println(characterJson.get("class"));
                     System.out.println(characterJson.get("level"));
