@@ -1,7 +1,7 @@
 main: com.inaiga.rpgplugin.MainClass
 name: RPGPlugin
 version: 1.0
-api-version: 1.13
+api-version: 1.14
 author: Tiago & Vasco
 description: RPG é fixe
 commands:

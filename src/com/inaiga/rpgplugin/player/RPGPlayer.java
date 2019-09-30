@@ -17,136 +17,148 @@ import org.json.simple.parser.ParseException;
 
 public class RPGPlayer {
 
-    private static final int MAX_CHARACTERS = 4;
+	private static final int MAX_CHARACTERS = 4;
 
-    private Player player;
+	private Player player;
 
-    private Character[] characters = new Character[MAX_CHARACTERS];
-    private Character activeCharacter = null;
+	private Character[] characters = new Character[MAX_CHARACTERS];
+	private Character activeCharacter = null;
 
-    public RPGPlayer(Player player) {
-        this.player = player;
-        loadCharacters();
-    }
+	public RPGPlayer(Player player) {
+		this.player = player;
+		loadCharacters();
+	}
 
-    public Character[] getCharacters() {
-        return characters;
-    }
+	public Character[] getCharacters() {
+		return characters;
+	}
 
-    public Character getCharacter(int index) {
-        return characters[index];
-    }
+	public Character getCharacter(int index) {
+		return characters[index];
+	}
 
-    public void setCharacters(Character[] characters) {
-        this.characters = characters;
-    }
+	public void setCharacters(Character[] characters) {
+		this.characters = characters;
+	}
 
-    public Player getPlayer() {
-        return player;
-    }
+	public Player getPlayer() {
+		return player;
+	}
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
 
-    public Character getActiveCharacter() {
-        return activeCharacter;
-    }
+	public Character getActiveCharacter() {
+		return activeCharacter;
+	}
 
-    public void setActiveCharacter(Character activeCharacter) {
-        this.activeCharacter = activeCharacter;
-    }
+	public void setActiveCharacter(Character activeCharacter) {
+		this.activeCharacter = activeCharacter;
+	}
 
-    public void addCharacter(Character character) {
-        for (int i = 0; i < characters.length; i++) {
-            if (characters[i] == null) {
-                characters[i] = character;
-                player.sendMessage("Character successfully created!");
-                return;
-            }
-        }
+	public void addCharacter(Character character) {
+		for (int i = 0; i < characters.length; i++) {
+			if (characters[i] == null) {
+				characters[i] = character;
+				player.sendMessage("Character successfully created!");
+				return;
+			}
+		}
 
-        player.sendMessage("Character could not be created!");
-    }
+		player.sendMessage("Character could not be created!");
+	}
 
-    private void loadCharacters() {
-        Character[] characters = new Character[MAX_CHARACTERS];
+	private void loadCharacters() {
+		Character[] characters = new Character[MAX_CHARACTERS];
 
-        try {
-            File file = new File(MainClass.getInstance().getDataFolder() + File.separator + "characters" + File.separator + player.getUniqueId().toString() + ".json");
-            if (!file.exists()) {
-                file.getParentFile().mkdirs();
-                file.createNewFile();
+		try {
+			File file = new File(MainClass.getInstance().getDataFolder() + File.separator + "characters" + File.separator + player.getUniqueId().toString() + ".json");
+			if (!file.exists()) {
+				file.getParentFile().mkdirs();
+				file.createNewFile();
 
-                BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+				BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
-                JSONObject initialJson = new JSONObject();
-                JSONArray emptyCharacterArray = new JSONArray();
+				JSONObject initialJson = new JSONObject();
+				JSONArray emptyCharacterArray = new JSONArray();
 
-                initialJson.put("characters", emptyCharacterArray);
+				initialJson.put("characters", emptyCharacterArray);
 
-                writer.write(initialJson.toJSONString());
-                writer.close();
-            } else {
-                BufferedReader reader = new BufferedReader(new FileReader(file));
+				writer.write(initialJson.toJSONString());
+				writer.close();
+			} else {
+				BufferedReader reader = new BufferedReader(new FileReader(file));
 
-                JSONParser parser = new JSONParser();
-                Object object = parser.parse(reader);
+				JSONParser parser = new JSONParser();
+				Object object = parser.parse(reader);
 
-                JSONArray characterArray = (JSONArray) ((JSONObject) object).get("characters");
+				JSONArray characterArray = (JSONArray) ((JSONObject) object).get("characters");
 
-                for (int i = 0; i < characterArray.size(); i++) {
-                    JSONObject characterJson = (JSONObject) characterArray.get(i);
+				for (int i = 0; i < characterArray.size(); i++) {
+					JSONObject characterJson = (JSONObject) characterArray.get(i);
 
-                    characters[i] = new Character(Class.valueOf(characterJson.get("class").toString()), Integer.parseInt(characterJson.get("level").toString()));
+					characters[i] = new Character(Class.valueOf(characterJson.get("class").toString()), Integer.parseInt(characterJson.get("level").toString()));
 
-                    System.out.println(characterJson.get("class"));
-                    System.out.println(characterJson.get("level"));
-                }
-            }
+					System.out.println(characterJson.get("class"));
+					System.out.println(characterJson.get("level"));
+				}
+			}
 
-        } catch (ParseException | IOException e) {
-            e.printStackTrace();
-        }
+		} catch (ParseException | IOException e) {
+			e.printStackTrace();
+		}
 
-        this.characters = characters;
-    }
+		this.characters = characters;
+	}
 
-    public void saveCharacters() {
-        JSONObject charactersObject = new JSONObject();
-        JSONArray characterArray = new JSONArray();
+	public void saveCharacters() {
+		JSONObject charactersObject = new JSONObject();
+		JSONArray characterArray = new JSONArray();
 
-        for (Character character : characters) {
-            if (character != null) {
-                JSONObject characterJson = new JSONObject();
+		for (Character character : characters) {
+			if (character != null) {
+				JSONObject characterJson = new JSONObject();
 
-                characterJson.put("class", character.getCharacterClass().toString());
-                characterJson.put("level", character.getLevel());
+				characterJson.put("class", character.getCharacterClass().toString());
+				characterJson.put("level", character.getLevel());
 
-                characterArray.add(characterJson);
-            }
-        }
+				characterArray.add(characterJson);
+			}
+		}
 
-        charactersObject.put("characters", characterArray);
+		charactersObject.put("characters", characterArray);
 
-        File file = new File(MainClass.getInstance().getDataFolder() + File.separator + "characters" + File.separator + player.getUniqueId().toString() + ".json");
+		File file = new File(MainClass.getInstance().getDataFolder() + File.separator + "characters" + File.separator + player.getUniqueId().toString() + ".json");
 
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
-            writer.write(charactersObject.toJSONString());
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+			writer.write(charactersObject.toJSONString());
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-    public void chooseCharacter(Character character) {
-        activeCharacter = character;
-    }
+	public boolean chooseCharacter(Character character) {
+		for (Character arrayCharacter : characters) {
+			if (arrayCharacter == character) {
+				activeCharacter = character;
+				return true;
+			}
+		}
 
-    public void chooseCharacter(int index) {
-        activeCharacter = characters[index];
-    }
+		return false;
+	}
+
+	public boolean chooseCharacter(int index) {
+		if (characters.length > index && characters[index] != null) {
+			activeCharacter = characters[index];
+			return true;
+		}
+
+		return false;
+	}
 
 }

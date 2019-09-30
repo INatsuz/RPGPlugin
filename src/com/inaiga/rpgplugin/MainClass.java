@@ -1,7 +1,7 @@
 package com.inaiga.rpgplugin;
 
 import com.inaiga.rpgplugin.characters.Character;
-import com.inaiga.rpgplugin.characters.CharacterMenu;
+import com.inaiga.rpgplugin.menus.CharacterMenu;
 import com.inaiga.rpgplugin.classes.Class;
 import com.inaiga.rpgplugin.listeners.InventoryClickListener;
 import com.inaiga.rpgplugin.listeners.LoginLogoutListener;
@@ -36,15 +36,22 @@ public class MainClass extends JavaPlugin {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (label.equalsIgnoreCase("class")) {
-			PlayerManager.getRPGPlayerFromPlayer((Player) sender).addCharacter(new Character(Class.valueOf(args[0].toUpperCase()), 1));
-			System.out.println("Class Command");
+			RPGPlayer rpgPlayer = PlayerManager.getRPGPlayerFromPlayer((Player) sender);
+
+			if (rpgPlayer != null) {
+				rpgPlayer.addCharacter(new Character(Class.valueOf(args[0].toUpperCase()), 1));
+			}
 
 			return true;
 		} else if (label.equalsIgnoreCase("checkchar")) {
-			Character[] characters = PlayerManager.getRPGPlayerFromPlayer((Player) sender).getCharacters();
-			for (Character character : characters) {
-				if (character != null) {
-					sender.sendMessage(character.getCharacterClass().toString());
+			RPGPlayer rpgPlayer = PlayerManager.getRPGPlayerFromPlayer((Player) sender);
+
+			if (rpgPlayer != null) {
+				Character[] characters = rpgPlayer.getCharacters();
+				for (Character character : characters) {
+					if (character != null) {
+						sender.sendMessage(character.getCharacterClass().toString());
+					}
 				}
 			}
 
@@ -52,8 +59,14 @@ public class MainClass extends JavaPlugin {
 		} else if (label.equalsIgnoreCase("choosechar")) {
 			RPGPlayer rpgPlayer = PlayerManager.getRPGPlayerFromPlayer((Player) sender);
 
-			rpgPlayer.chooseCharacter(Integer.parseInt(args[0]));
-			sender.sendMessage("Your active character is " + rpgPlayer.getActiveCharacter().getCharacterClass());
+			if (rpgPlayer != null) {
+				if (rpgPlayer.chooseCharacter(Integer.parseInt(args[0]))) {
+					sender.sendMessage("Your active character is " + rpgPlayer.getActiveCharacter().getCharacterClass());
+				} else {
+					sender.sendMessage("It wasn't possible to choose the character");
+				}
+
+			}
 
 			return true;
 		} else if (label.equalsIgnoreCase("pickchar")) {
