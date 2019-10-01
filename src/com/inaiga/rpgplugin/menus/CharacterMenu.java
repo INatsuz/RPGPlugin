@@ -19,7 +19,7 @@ public class CharacterMenu extends Menu {
     }
 
     @Override
-    public void openMenu(Player player) {
+    public void openForPlayer(Player player) {
         getMenuInventory().clear();
 
         RPGPlayer rpgPlayer = PlayerManager.getRPGPlayerFromPlayer(player);

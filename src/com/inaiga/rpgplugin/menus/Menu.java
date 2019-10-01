@@ -41,6 +41,6 @@ public abstract class Menu {
         this.slots = slots;
     }
 
-    abstract void openMenu(Player player);
+    public abstract void openForPlayer(Player player);
 
 }
