@@ -10,12 +10,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class CharacterMenu extends Menu {
 
-    public static final String MENU_NAME = "CHARACTER SELECTION";
-    private static final int MENU_SLOTS = 36;
     private static final int[] MENU_ITEM_POSITIONS = {10, 12, 14, 16};
 
     public CharacterMenu() {
-        super(MENU_SLOTS, MENU_NAME);
+        super(MenuType.CHARACTER_SELECTION_MENU.getSlots(), MenuType.CHARACTER_SELECTION_MENU.getName());
     }
 
     @Override

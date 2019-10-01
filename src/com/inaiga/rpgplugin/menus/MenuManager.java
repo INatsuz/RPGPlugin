@@ -1,18 +1,17 @@
 package com.inaiga.rpgplugin.menus;
 
+import org.bukkit.entity.Player;
+
 public class MenuManager {
 
-    public static Menu createMenu(MenuType menuType){
+    public static boolean openMenuForPlayer(Player player, MenuType menuType){
         switch (menuType) {
             case CHARACTER_SELECTION_MENU:
-                return new CharacterMenu();
+                new CharacterMenu().openForPlayer(player);
+
+                return true;
             default:
-                return null;
+                return false;
         }
     }
-
-    public enum MenuType {
-        CHARACTER_SELECTION_MENU
-    }
-
 }
