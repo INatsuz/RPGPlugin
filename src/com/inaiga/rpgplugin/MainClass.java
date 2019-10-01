@@ -1,10 +1,10 @@
 package com.inaiga.rpgplugin;
 
 import com.inaiga.rpgplugin.characters.Character;
-import com.inaiga.rpgplugin.menus.CharacterMenu;
 import com.inaiga.rpgplugin.classes.Class;
 import com.inaiga.rpgplugin.listeners.InventoryClickListener;
 import com.inaiga.rpgplugin.listeners.LoginLogoutListener;
+import com.inaiga.rpgplugin.menus.MenuManager;
 import com.inaiga.rpgplugin.player.PlayerManager;
 import com.inaiga.rpgplugin.player.RPGPlayer;
 import org.bukkit.command.Command;
@@ -70,7 +70,7 @@ public class MainClass extends JavaPlugin {
 
 			return true;
 		} else if (label.equalsIgnoreCase("pickchar")) {
-			CharacterMenu.openCharacterMenu((Player) sender);
+			MenuManager.CHARACTER_MENU.openMenu((Player) sender);
 
 			return true;
 		}

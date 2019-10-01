@@ -2,6 +2,7 @@ package com.inaiga.rpgplugin.player;
 
 import java.util.ArrayList;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class PlayerManager {
 
