@@ -27,7 +27,7 @@ public class CharacterMenu extends Menu {
 
             for (int i = 0; i < playerCharacters.length; i++) {
                 if (playerCharacters[i] != null) {
-                    ItemStack item = new ItemStack(Material.LIME_STAINED_GLASS_PANE, 1);
+                    ItemStack item = new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1);
                     ItemMeta itemMeta = item.getItemMeta();
 
                     if (itemMeta != null) {

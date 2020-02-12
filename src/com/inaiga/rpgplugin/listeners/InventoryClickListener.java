@@ -10,7 +10,9 @@ public class InventoryClickListener implements Listener {
 	@EventHandler
 	public void InventoryClick(InventoryClickEvent event) {
 		for (MenuType menuType : MenuType.values()) {
-			if (event.getView().getTitle().equals(menuType)) {
+			System.out.println(event.getView().getTitle());
+			if (event.getView().getTitle().equals(menuType.getName())) {
+				System.out.println("Inventory Click Cancelled");
 				event.setCancelled(true);
 			}
 		}
