@@ -69,10 +69,12 @@ public class RPGPlayer {
 		player.sendMessage("Character could not be created!");
 	}
 
-	public void deleteCharacter(int slot) {
+	public boolean deleteCharacter(int slot) {
 		if (characters[slot] != null) {
 			characters[slot] = null;
+			return true;
 		}
+		return false;
 	}
 
 	private void loadCharacters() {

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Character {
 
+    //Character properties
     private Class characterClass;
     private int level;
     private ArrayList<Skill> skills = new ArrayList<>();
