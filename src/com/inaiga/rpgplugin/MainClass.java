@@ -4,7 +4,6 @@ import com.inaiga.rpgplugin.characters.Character;
 import com.inaiga.rpgplugin.classes.Class;
 import com.inaiga.rpgplugin.listeners.InventoryClickListener;
 import com.inaiga.rpgplugin.listeners.LoginLogoutListener;
-import com.inaiga.rpgplugin.menus.CharacterMenu;
 import com.inaiga.rpgplugin.menus.MenuManager;
 import com.inaiga.rpgplugin.menus.MenuType;
 import com.inaiga.rpgplugin.player.PlayerManager;
@@ -67,14 +66,15 @@ public class MainClass extends JavaPlugin {
 				} else {
 					sender.sendMessage("It wasn't possible to choose the character");
 				}
-
 			}
-
 			return true;
 		} else if (label.equalsIgnoreCase("pickchar")) {
 			MenuManager.openMenuForPlayer((Player) sender, MenuType.CHARACTER_SELECTION_MENU);
 
 			return true;
+		} else if (label.equalsIgnoreCase("delchar")) {
+			RPGPlayer rpgplayer = PlayerManager.getRPGPlayerFromPlayer((Player) sender);
+			rpgplayer.deleteCharacter(Integer.parseInt(args[0]));
 		}
 
 		return super.onCommand(sender, command, label, args);

@@ -19,5 +19,9 @@ commands:
     permission-message: You don't have the permission to do this command.
   pickchar:
     usage: /pickchar
-    description: Chooses a character and sets it to your active character
+    description: Opens the RPG Characters Selection Menu
+    permission-message: You don't have the permission to do this command.
+  delchar:
+    usage: /delchar
+    description: Deletes a RPG Character
     permission-message: You don't have the permission to do this command.

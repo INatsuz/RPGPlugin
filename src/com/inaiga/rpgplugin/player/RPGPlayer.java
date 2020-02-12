@@ -69,6 +69,12 @@ public class RPGPlayer {
 		player.sendMessage("Character could not be created!");
 	}
 
+	public void deleteCharacter(int slot) {
+		if (characters[slot] != null) {
+			characters[slot] = null;
+		}
+	}
+
 	private void loadCharacters() {
 		Character[] characters = new Character[MAX_CHARACTERS];
 
