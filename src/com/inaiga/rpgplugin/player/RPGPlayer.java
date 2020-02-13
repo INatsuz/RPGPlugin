@@ -1,7 +1,7 @@
 package com.inaiga.rpgplugin.player;
 
 import com.inaiga.rpgplugin.MainClass;
-import com.inaiga.rpgplugin.characters.Character;
+import com.inaiga.rpgplugin.characters.RPGCharacter;
 import com.inaiga.rpgplugin.classes.Class;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -21,46 +21,83 @@ public class RPGPlayer {
 
 	private Player player;
 
-	private Character[] characters = new Character[MAX_CHARACTERS];
-	private Character activeCharacter = null;
+	private RPGCharacter[] RPGCharacters = new RPGCharacter[MAX_CHARACTERS];
+	private RPGCharacter activeRPGCharacter = null;
 
+	/**
+	 * Constructor of the RPGPlayer
+	 * @param player {@link org.bukkit.entity.Player}
+	 * */
 	public RPGPlayer(Player player) {
 		this.player = player;
 		loadCharacters();
 	}
 
-	public Character[] getCharacters() {
-		return characters;
+	/**
+	 * Returns an Array of RPGCharacters
+	 * @return an Array of {@link com.inaiga.rpgplugin.characters.RPGCharacter}
+	 * */
+	public RPGCharacter[] getRPGCharacters() {
+		return RPGCharacters;
 	}
 
-	public Character getCharacter(int index) {
-		return characters[index];
+	/**
+	 * Returns an RPGCharacter
+	 * @param index Index of the {@link com.inaiga.rpgplugin.characters.RPGCharacter} as an int
+	 * @return The respective {@link com.inaiga.rpgplugin.characters.RPGCharacter}
+	 * */
+	public RPGCharacter getCharacter(int index) {
+		return RPGCharacters[index];
 	}
 
-	public void setCharacters(Character[] characters) {
-		this.characters = characters;
+	/**
+	 * Sets the Array of RPGCharacters
+	 * @param RPGCharacters Array of {@link com.inaiga.rpgplugin.characters.RPGCharacter}
+	 * */
+	public void setRPGCharacters(RPGCharacter[] RPGCharacters) {
+		this.RPGCharacters = RPGCharacters;
 	}
 
+	/**
+	 * Returns the Player of an RPGPlayer
+	 * @return {@link org.bukkit.entity.Player} from the RPGPlayer
+	 * */
 	public Player getPlayer() {
 		return player;
 	}
 
+	/**
+	 * Sets the Player for an RPGPlayer
+	 * @param player {@link org.bukkit.entity.Player} for the RPGPlayer
+	 * */
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
 
-	public Character getActiveCharacter() {
-		return activeCharacter;
+	/**
+	 * Return the active RPGCharacter
+	 * @return the active {@link com.inaiga.rpgplugin.characters.RPGCharacter}
+	 * */
+	public RPGCharacter getActiveRPGCharacter() {
+		return activeRPGCharacter;
 	}
 
-	public void setActiveCharacter(Character activeCharacter) {
-		this.activeCharacter = activeCharacter;
+	/**
+	 * Sets the active RPGCharacter
+	 * @param activeRPGCharacter  {@link com.inaiga.rpgplugin.characters.RPGCharacter} you want to set as currently active
+	 * */
+	public void setActiveRPGCharacter(RPGCharacter activeRPGCharacter) {
+		this.activeRPGCharacter = activeRPGCharacter;
 	}
 
-	public void addCharacter(Character character) {
-		for (int i = 0; i < characters.length; i++) {
-			if (characters[i] == null) {
-				characters[i] = character;
+	/**
+	 * Add one RPGCharacter
+	 * @param RPGCharacter {@link com.inaiga.rpgplugin.characters.RPGCharacter} you want to add
+	 * */
+	public void addCharacter(RPGCharacter RPGCharacter) {
+		for (int i = 0; i < RPGCharacters.length; i++) {
+			if (RPGCharacters[i] == null) {
+				RPGCharacters[i] = RPGCharacter;
 				player.sendMessage("Character successfully created!");
 				return;
 			}
@@ -69,29 +106,37 @@ public class RPGPlayer {
 		player.sendMessage("Character could not be created!");
 	}
 
-	public boolean deleteCharacter(int slot) {
-		if (characters[slot] != null) {
-			characters[slot] = null;
+	/**
+	 * Delete one RPGCharacter
+	 * @param index index of the {@link com.inaiga.rpgplugin.characters.RPGCharacter} you want to delete
+	 * @return true if deleted successfully, or false otherwise
+	 * */
+	public boolean deleteCharacter(int index) {
+		if (RPGCharacters[index] != null) {
+			RPGCharacters[index] = null;
 			return true;
 		}
 		return false;
 	}
 
+	/**
+	 * Load the RPGCharacters for a RPGPlayer
+	 * */
 	private void loadCharacters() {
-		Character[] characters = new Character[MAX_CHARACTERS];
+		RPGCharacter[] RPGCharacters = new RPGCharacter[MAX_CHARACTERS];	//Creates an Array of RPGCharacters
 
 		try {
-			File file = new File(MainClass.getInstance().getDataFolder() + File.separator + "characters" + File.separator + player.getUniqueId().toString() + ".json");
+			File file = new File(MainClass.getInstance().getDataFolder() + File.separator + "characters" + File.separator + player.getUniqueId().toString() + ".json");	//Creates a File
 			if (!file.exists()) {
-				file.getParentFile().mkdirs();
-				file.createNewFile();
+				file.getParentFile().mkdirs();	//Creates the required folders
+				file.createNewFile();	//Creates the file
 
-				BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+				BufferedWriter writer = new BufferedWriter(new FileWriter(file));	//Creates a writer
 
-				JSONObject initialJson = new JSONObject();
-				JSONArray emptyCharacterArray = new JSONArray();
+				JSONObject initialJson = new JSONObject();	//Creates a JSON Object
+				JSONArray emptyCharacterArray = new JSONArray();	//Creates a JSON Array
 
-				initialJson.put("characters", emptyCharacterArray);
+				initialJson.put("characters", emptyCharacterArray);	//Adds an empty array to JSON Object
 
 				writer.write(initialJson.toJSONString());
 				writer.close();
@@ -106,7 +151,7 @@ public class RPGPlayer {
 				for (int i = 0; i < characterArray.size(); i++) {
 					JSONObject characterJson = (JSONObject) characterArray.get(i);
 
-					characters[i] = new Character(Class.valueOf(characterJson.get("class").toString()), Integer.parseInt(characterJson.get("level").toString()));
+					RPGCharacters[i] = new RPGCharacter(Class.valueOf(characterJson.get("class").toString()), Integer.parseInt(characterJson.get("level").toString()));
 
 					System.out.println(characterJson.get("class"));
 					System.out.println(characterJson.get("level"));
@@ -117,19 +162,19 @@ public class RPGPlayer {
 			e.printStackTrace();
 		}
 
-		this.characters = characters;
+		this.RPGCharacters = RPGCharacters;
 	}
 
 	public void saveCharacters() {
 		JSONObject charactersObject = new JSONObject();
 		JSONArray characterArray = new JSONArray();
 
-		for (Character character : characters) {
-			if (character != null) {
+		for (RPGCharacter RPGCharacter : RPGCharacters) {
+			if (RPGCharacter != null) {
 				JSONObject characterJson = new JSONObject();
 
-				characterJson.put("class", character.getCharacterClass().toString());
-				characterJson.put("level", character.getLevel());
+				characterJson.put("class", RPGCharacter.getCharacterClass().toString());
+				characterJson.put("level", RPGCharacter.getLevel());
 
 				characterArray.add(characterJson);
 			}
@@ -149,10 +194,10 @@ public class RPGPlayer {
 		}
 	}
 
-	public boolean chooseCharacter(Character character) {
-		for (Character arrayCharacter : characters) {
-			if (arrayCharacter == character) {
-				activeCharacter = character;
+	public boolean chooseCharacter(RPGCharacter RPGCharacter) {
+		for (RPGCharacter arrayRPGCharacter : RPGCharacters) {
+			if (arrayRPGCharacter == RPGCharacter) {
+				activeRPGCharacter = RPGCharacter;
 				return true;
 			}
 		}
@@ -161,8 +206,8 @@ public class RPGPlayer {
 	}
 
 	public boolean chooseCharacter(int index) {
-		if (characters.length > index && characters[index] != null) {
-			activeCharacter = characters[index];
+		if (RPGCharacters.length > index && RPGCharacters[index] != null) {
+			activeRPGCharacter = RPGCharacters[index];
 			return true;
 		}
 

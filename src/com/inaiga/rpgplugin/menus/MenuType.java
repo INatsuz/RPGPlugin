@@ -6,22 +6,30 @@ public enum MenuType {
 	private final String name;
 	private final int slots;
 
+	/**
+	 * Constructor of the menu
+	 * @param name Name of the menu as a String
+	 * @param slots Number of slots as an int
+	 * */
 	private MenuType(String name, int slots){
 		this.name = name;
 		this.slots = slots;
 	}
 
+	/**
+	 * Returns the name of the menu
+	 * @return The name of the menu as a String
+	 * */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Returns the number of slots
+	 * @return The number of slots as an int
+	 * */
 	public int getSlots() {
 		return slots;
-	}
-
-	@Override
-	public String toString() {
-		return name;
 	}
 
 }

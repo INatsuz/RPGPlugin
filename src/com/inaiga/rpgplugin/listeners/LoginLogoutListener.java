@@ -9,14 +9,16 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class LoginLogoutListener implements Listener {
 
+    //Creates an RPGPlayer when he logs in
     @EventHandler
     public void PlayerJoin(PlayerJoinEvent event) {
-        event.getPlayer().sendMessage("You have joined Kappa");
+        event.getPlayer().sendMessage("You have joined");
         System.out.println("Player Join Event");
 
         PlayerManager.createPlayer(event.getPlayer());
     }
 
+    //Saves an RPGPlayer when he logs out
     @EventHandler
     public void PlayerDisconnect(PlayerQuitEvent event) {
         System.out.println("Player Quit Event");

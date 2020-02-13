@@ -1,6 +1,6 @@
 package com.inaiga.rpgplugin.menus;
 
-import com.inaiga.rpgplugin.characters.Character;
+import com.inaiga.rpgplugin.characters.RPGCharacter;
 import com.inaiga.rpgplugin.player.PlayerManager;
 import com.inaiga.rpgplugin.player.RPGPlayer;
 import org.bukkit.Material;
@@ -12,45 +12,52 @@ public class CharacterMenu extends Menu {
 
     private static final int[] MENU_ITEM_POSITIONS = {10, 12, 14, 16};
 
-    public CharacterMenu() {
-        super(MenuType.CHARACTER_SELECTION_MENU.getSlots(), MenuType.CHARACTER_SELECTION_MENU.getName());
+    /**
+     * Constructor for the CharacterMenu class
+     * */
+    CharacterMenu() {
+        super(MenuType.CHARACTER_SELECTION_MENU.getName(), MenuType.CHARACTER_SELECTION_MENU.getSlots());
     }
 
+    /**
+     * Opens the CharacterMenu for the given Player
+     * @param player {@link org.bukkit.entity.Player}
+     * */
     @Override
     public void openForPlayer(Player player) {
-        getMenuInventory().clear();
+        getMenuInventory().clear(); //Clear the Inventory of the menu
 
-        RPGPlayer rpgPlayer = PlayerManager.getRPGPlayerFromPlayer(player);
+        RPGPlayer rpgPlayer = PlayerManager.getRPGPlayerFromPlayer(player); //Get the RPGPlayer
 
         if (rpgPlayer != null) {
-            Character[] playerCharacters = rpgPlayer.getCharacters();
+            RPGCharacter[] playerRPGCharacters = rpgPlayer.getRPGCharacters();  //Get the RPGPlayer Characters
 
-            for (int i = 0; i < playerCharacters.length; i++) {
-                if (playerCharacters[i] != null) {
-                    ItemStack item = new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1);
-                    ItemMeta itemMeta = item.getItemMeta();
+            for (int i = 0; i < playerRPGCharacters.length; i++) {
+                if (playerRPGCharacters[i] != null) {
+                    ItemStack item = new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1);    //Creates an item
+                    ItemMeta itemMeta = item.getItemMeta(); //Creates an ItemMeta
 
                     if (itemMeta != null) {
-                        itemMeta.setDisplayName(playerCharacters[i].getCharacterClass() + " - LVL " + playerCharacters[i].getLevel());
-                        item.setItemMeta(itemMeta);
+                        itemMeta.setDisplayName(playerRPGCharacters[i].getCharacterClass() + " - LVL " + playerRPGCharacters[i].getLevel());    //Changes the name of the ItemMeta
+                        item.setItemMeta(itemMeta); //Sets the correspondent ItemMeta to the item
                     }
 
-                    getMenuInventory().setItem(MENU_ITEM_POSITIONS[i], item);
+                    getMenuInventory().setItem(MENU_ITEM_POSITIONS[i], item);   //Puts the item in the correspondent position
                 } else {
-                    ItemStack item = new ItemStack(Material.LIME_STAINED_GLASS_PANE, 1);
-                    ItemMeta itemMeta = item.getItemMeta();
+                    ItemStack item = new ItemStack(Material.LIME_STAINED_GLASS_PANE, 1);    //Creates an item
+                    ItemMeta itemMeta = item.getItemMeta(); //Creates an ItemMeta
 
                     if (itemMeta != null) {
-                        itemMeta.setDisplayName("Create Character");
-                        item.setItemMeta(itemMeta);
+                        itemMeta.setDisplayName("Create Character");    //Changes the name of the item Meta
+                        item.setItemMeta(itemMeta); //Sets the correspondent ItemMeta to the item
                     }
 
-                    getMenuInventory().setItem(MENU_ITEM_POSITIONS[i], item);
+                    getMenuInventory().setItem(MENU_ITEM_POSITIONS[i], item);   //Puts the item in the correspondent position
                 }
 
             }
         }
 
-        player.openInventory(getMenuInventory());
+        player.openInventory(getMenuInventory());   //Opens the Menu
     }
 }

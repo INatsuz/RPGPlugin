@@ -1,6 +1,6 @@
 package com.inaiga.rpgplugin;
 
-import com.inaiga.rpgplugin.characters.Character;
+import com.inaiga.rpgplugin.characters.RPGCharacter;
 import com.inaiga.rpgplugin.classes.Class;
 import com.inaiga.rpgplugin.listeners.InventoryClickListener;
 import com.inaiga.rpgplugin.listeners.LoginLogoutListener;
@@ -43,7 +43,7 @@ public class MainClass extends JavaPlugin {
 			RPGPlayer rpgPlayer = PlayerManager.getRPGPlayerFromPlayer((Player) sender);	//Get the RPG Player
 
 			if (rpgPlayer != null) {
-				rpgPlayer.addCharacter(new Character(Class.valueOf(args[0].toUpperCase()), 1));	//Add an RPG Character
+				rpgPlayer.addCharacter(new RPGCharacter(Class.valueOf(args[0].toUpperCase()), 1));	//Add an RPG Character
 			}
 
 			return true;
@@ -52,10 +52,10 @@ public class MainClass extends JavaPlugin {
 			RPGPlayer rpgPlayer = PlayerManager.getRPGPlayerFromPlayer((Player) sender);	//Get the RPG Player
 
 			if (rpgPlayer != null) {
-				Character[] characters = rpgPlayer.getCharacters();	//Get the RPG Characters of the RPG Player
-				for (Character character : characters) {
-					if (character != null) {
-						sender.sendMessage(character.getCharacterClass().toString());	//Sends the Characters to the RPG Player
+				RPGCharacter[] RPGCharacters = rpgPlayer.getRPGCharacters();	//Get the RPG Characters of the RPG Player
+				for (RPGCharacter RPGCharacter : RPGCharacters) {
+					if (RPGCharacter != null) {
+						sender.sendMessage(RPGCharacter.getCharacterClass().toString());	//Sends the Characters to the RPG Player
 					}
 				}
 			}
@@ -67,9 +67,9 @@ public class MainClass extends JavaPlugin {
 
 			if (rpgPlayer != null) {
 				if (rpgPlayer.chooseCharacter(Integer.parseInt(args[0]))) {
-					sender.sendMessage("Your active character is " + rpgPlayer.getActiveCharacter().getCharacterClass());	//Set the RPG Character to active
+					sender.sendMessage("Your active character is " + rpgPlayer.getActiveRPGCharacter().getCharacterClass());	//Set the RPG Character to active
 				} else {
-					sender.sendMessage("It wasn't possible to choose the character");	//Error
+					sender.sendMessage("It wasn't possible to choose the character");    //Error
 				}
 			}
 
