@@ -138,20 +138,20 @@ public class RPGPlayer {
 
 				initialJson.put("characters", emptyCharacterArray);	//Adds an empty array to JSON Object
 
-				writer.write(initialJson.toJSONString());
-				writer.close();
+				writer.write(initialJson.toJSONString());	//Write the file with JSON Object
+				writer.close();	//Close the file
 			} else {
-				BufferedReader reader = new BufferedReader(new FileReader(file));
+				BufferedReader reader = new BufferedReader(new FileReader(file));	//Creates a reader
 
-				JSONParser parser = new JSONParser();
-				Object object = parser.parse(reader);
+				JSONParser parser = new JSONParser();	//Creates a parser
+				Object object = parser.parse(reader);	//Parses the reader
 
-				JSONArray characterArray = (JSONArray) ((JSONObject) object).get("characters");
+				JSONArray characterArray = (JSONArray) ((JSONObject) object).get("characters");	//Gets the characters and puts them in a JSONArray
 
 				for (int i = 0; i < characterArray.size(); i++) {
-					JSONObject characterJson = (JSONObject) characterArray.get(i);
+					JSONObject characterJson = (JSONObject) characterArray.get(i);	//Gets the Character on the respective index
 
-					RPGCharacters[i] = new RPGCharacter(Class.valueOf(characterJson.get("class").toString()), Integer.parseInt(characterJson.get("level").toString()));
+					RPGCharacters[i] = new RPGCharacter(Class.valueOf(characterJson.get("class").toString()), Integer.parseInt(characterJson.get("level").toString()));	//Puts the Character in the Array of RPGCharacters
 
 					System.out.println(characterJson.get("class"));
 					System.out.println(characterJson.get("level"));
