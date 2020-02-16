@@ -2,6 +2,7 @@ package com.inaiga.rpgplugin.menus;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 
 public abstract class Menu {
@@ -26,7 +27,7 @@ public abstract class Menu {
      * Returns the menu's inventory
      * @return The menu's {@link org.bukkit.inventory.Inventory}
      * */
-    Inventory getMenuInventory() {
+    public Inventory getMenuInventory() {
         return menuInventory;
     }
 
@@ -72,5 +73,8 @@ public abstract class Menu {
 
     //Opens the Menu for the given Player
     public abstract void openForPlayer(Player player);
+
+    //Handles click events for the inventory
+    public abstract void handleClick(InventoryClickEvent event);
 
 }

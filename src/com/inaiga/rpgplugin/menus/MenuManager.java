@@ -1,8 +1,11 @@
 package com.inaiga.rpgplugin.menus;
 
+import java.util.ArrayList;
 import org.bukkit.entity.Player;
 
 public class MenuManager {
+
+    private static ArrayList<Menu> openMenus = new ArrayList<>();
 
     /**
      * Opens the given menu for the given Player
@@ -12,12 +15,22 @@ public class MenuManager {
     public static boolean openMenuForPlayer(Player player, MenuType menuType){
         switch (menuType) {
             case CHARACTER_SELECTION_MENU:
-                new CharacterMenu().openForPlayer(player);  //Opens this menu
+                CharacterMenu characterMenu = new CharacterMenu();
+                characterMenu.openForPlayer(player);  //Opens this menu
+                openMenus.add(characterMenu);
 
                 return true;
             default:
                 return false;
         }
+    }
+
+    public static ArrayList<Menu> getOpenMenus() {
+        return openMenus;
+    }
+
+    public static void setOpenMenus(ArrayList<Menu> openMenus) {
+        MenuManager.openMenus = openMenus;
     }
 
 }
