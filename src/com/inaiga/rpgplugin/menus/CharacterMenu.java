@@ -248,7 +248,7 @@ public class CharacterMenu extends Menu {
                             itemMeta.setDisplayName("Back");    //Changes the name of the ItemMeta
                             item.setItemMeta(itemMeta); //Sets the correspondent ItemMeta to the item
                         }
-                        getMenuInventory().setItem(MENU_CHARACTER_OPTIONS_SLOTS[i], item);   //Puts the item in the correspondent position
+                        getMenuInventory().setItem(MENU_CHARACTER_CREATE[i], item);   //Puts the item in the correspondent position
                     }
                 }
                 break;
