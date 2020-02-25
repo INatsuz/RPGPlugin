@@ -103,9 +103,8 @@ public class CharacterMenu extends Menu {
 				break;
 			case 1:
 				for (int i = 0; i < MENU_CHARACTER_OPTIONS_SLOTS.length; i++) {
-					if(i==0)
-					{
-						ItemStack item = new ItemStack(CHARACTER_CHOOSE_ITEM , 1);	//Creates Green item
+					if (i == 0) {
+						ItemStack item = new ItemStack(CHARACTER_CHOOSE_ITEM, 1);    //Creates Green item
 						ItemMeta itemMeta = item.getItemMeta(); //Creates an Itemmeta
 
 						if (itemMeta != null) {
@@ -113,9 +112,7 @@ public class CharacterMenu extends Menu {
 							item.setItemMeta(itemMeta); //Sets the correspondent ItemMeta to the item
 						}
 						getMenuInventory().setItem(MENU_CHARACTER_OPTIONS_SLOTS[i], item);   //Puts the item in the correspondent position
-					}
-					else if(i==1)
-					{
+					} else if (i == 1) {
 						ItemStack item = new ItemStack(CHARACTER_SEENAME_ITEM, 1); //Creates nether star item
 						ItemMeta itemMeta = item.getItemMeta(); //Creates an Itemmeta
 
@@ -124,9 +121,7 @@ public class CharacterMenu extends Menu {
 							item.setItemMeta(itemMeta); //Sets the correspondent ItemMeta to the item
 						}
 						getMenuInventory().setItem(MENU_CHARACTER_OPTIONS_SLOTS[i], item);   //Puts the item in the correspondent position
-					}
-					else if(i==2)
-					{
+					} else if (i == 2) {
 						ItemStack item = new ItemStack(CHARACTER_DELETE_ITEM, 1); //Creates Red item
 						ItemMeta itemMeta = item.getItemMeta(); //Creates an Itemmeta
 
@@ -135,9 +130,7 @@ public class CharacterMenu extends Menu {
 							item.setItemMeta(itemMeta); //Sets the correspondent ItemMeta to the item
 						}
 						getMenuInventory().setItem(MENU_CHARACTER_OPTIONS_SLOTS[i], item);   //Puts the item in the correspondent position
-					}
-					else
-					{
+					} else {
 						ItemStack item = new ItemStack(CHARACTER_BACK_ITEM, 1); //Creates Barrier item
 						ItemMeta itemMeta = item.getItemMeta(); //Creates an Itemmeta
 
