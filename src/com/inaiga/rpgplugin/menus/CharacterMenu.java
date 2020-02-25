@@ -221,7 +221,7 @@ public class CharacterMenu extends Menu {
                             item.setItemMeta(itemMeta); //Sets the correspondent ItemMeta to the item
                         }
                         getMenuInventory().setItem(MENU_CHARACTER_CREATE[i], item);   //Puts the item in the correspondent position
-                    } else if (i == 2){
+                    } else if (i == 2) {
                         ItemStack item = new ItemStack(ROGUE_CLASS_ITEM, 1); //Creates Red item
                         LeatherArmorMeta itemMeta = (LeatherArmorMeta) item.getItemMeta(); //Creates an Itemmeta
 
@@ -231,8 +231,7 @@ public class CharacterMenu extends Menu {
                             item.setItemMeta(itemMeta); //Sets the correspondent ItemMeta to the item
                         }
                         getMenuInventory().setItem(MENU_CHARACTER_CREATE[i], item);   //Puts the item in the correspondent position
-                    }
-                    else if (i == 2){
+                    } else if (i == 3) {
                         ItemStack item = new ItemStack(WIZARD_CLASS_ITEM, 1); //Creates nether star item
                         ItemMeta itemMeta = item.getItemMeta(); //Creates an Itemmeta
 
