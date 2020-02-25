@@ -14,8 +14,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class CharacterMenu extends Menu {
 
 	private static final int[] MENU_CHARACTER_SLOTS = {10, 12, 14, 16};
+	private static final int[] MENU_CHARACTER_OPTIONS_SLOTS = {11, 13, 15, 31};
 	private static final Material CHARACTER_ITEM = Material.BLACK_STAINED_GLASS_PANE;
 	private static final Material CHARACTER_CREATE_ITEM = Material.LIME_STAINED_GLASS_PANE;
+	private static final Material CHARACTER_CHOOSE_ITEM = Material.LIME_STAINED_GLASS_PANE;
+	private static final Material CHARACTER_SEENAME_ITEM = Material.NETHER_STAR;
+	private static final Material CHARACTER_DELETE_ITEM = Material.RED_STAINED_GLASS_PANE;
+	private static final Material CHARACTER_BACK_ITEM = Material.BARRIER;
 
 	private int menuState = 0; // 0 → Initial Screen, 1 → Character Options
 
@@ -97,10 +102,52 @@ public class CharacterMenu extends Menu {
 				}
 				break;
 			case 1:
-				Inventory newInventory = Bukkit.createInventory(null, MenuType.CHARACTER_SELECTION_MENU.getSlots(), "Teste");
-				setMenuInventory(newInventory);
-				player.closeInventory();
-				player.openInventory(getMenuInventory());
+				for (int i = 0; i < MENU_CHARACTER_OPTIONS_SLOTS.length; i++) {
+					if(i==0)
+					{
+						ItemStack item = new ItemStack(CHARACTER_CHOOSE_ITEM , 1);	//Creates Green item
+						ItemMeta itemMeta = item.getItemMeta(); //Creates an Itemmeta
+
+						if (itemMeta != null) {
+							itemMeta.setDisplayName("Play");    //Changes the name of the ItemMeta
+							item.setItemMeta(itemMeta); //Sets the correspondent ItemMeta to the item
+						}
+						getMenuInventory().setItem(MENU_CHARACTER_OPTIONS_SLOTS[i], item);   //Puts the item in the correspondent position
+					}
+					else if(i==1)
+					{
+						ItemStack item = new ItemStack(CHARACTER_SEENAME_ITEM, 1); //Creates nether star item
+						ItemMeta itemMeta = item.getItemMeta(); //Creates an Itemmeta
+
+						if (itemMeta != null) {
+							itemMeta.setDisplayName(chosenCharacter.getCharacterClass() + " - LVL " + chosenCharacter.getLevel());    //Changes the name of the ItemMeta
+							item.setItemMeta(itemMeta); //Sets the correspondent ItemMeta to the item
+						}
+						getMenuInventory().setItem(MENU_CHARACTER_OPTIONS_SLOTS[i], item);   //Puts the item in the correspondent position
+					}
+					else if(i==2)
+					{
+						ItemStack item = new ItemStack(CHARACTER_DELETE_ITEM, 1); //Creates Red item
+						ItemMeta itemMeta = item.getItemMeta(); //Creates an Itemmeta
+
+						if (itemMeta != null) {
+							itemMeta.setDisplayName("Delete");    //Changes the name of the ItemMeta
+							item.setItemMeta(itemMeta); //Sets the correspondent ItemMeta to the item
+						}
+						getMenuInventory().setItem(MENU_CHARACTER_OPTIONS_SLOTS[i], item);   //Puts the item in the correspondent position
+					}
+					else
+					{
+						ItemStack item = new ItemStack(CHARACTER_BACK_ITEM, 1); //Creates Barrier item
+						ItemMeta itemMeta = item.getItemMeta(); //Creates an Itemmeta
+
+						if (itemMeta != null) {
+							itemMeta.setDisplayName("Back");    //Changes the name of the ItemMeta
+							item.setItemMeta(itemMeta); //Sets the correspondent ItemMeta to the item
+						}
+						getMenuInventory().setItem(MENU_CHARACTER_OPTIONS_SLOTS[i], item);   //Puts the item in the correspondent position
+					}
+				}
 			default:
 				System.out.println("Nothing");
 		}
