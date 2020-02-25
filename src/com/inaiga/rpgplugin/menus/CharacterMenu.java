@@ -70,7 +70,7 @@ public class CharacterMenu extends Menu {
 			}
 		} else if (menuState == 1) {
 			for (int i = 0; i < MENU_CHARACTER_OPTIONS_SLOTS.length; i++) {
-				if (event.getSlot() == MENU_CHARACTER_SLOTS[i]) {
+				if (event.getSlot() == MENU_CHARACTER_OPTIONS_SLOTS[2]) {
 					if (rpgPlayer != null) { 
 						menuState = 2;
 						update();
