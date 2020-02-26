@@ -116,6 +116,23 @@ public class RPGPlayer {
 			RPGCharacters[index] = null;
 			return true;
 		}
+
+		return false;
+	}
+
+	/**
+	 * Delete one RPGCharacter
+	 * @param RPGCharacter {@link com.inaiga.rpgplugin.characters.RPGCharacter} you want to delete
+	 * @return true if deleted successfully, or false otherwise
+	 * */
+	public boolean deleteCharacter(RPGCharacter RPGCharacter) {
+		for (int i = 0; i < RPGCharacters.length; i++) {
+			if (RPGCharacters[i] == RPGCharacter) {
+				RPGCharacters[i] = null;
+				return true;
+			}
+		}
+
 		return false;
 	}
 
