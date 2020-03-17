@@ -1,11 +1,13 @@
 package com.inaiga.rpgplugin.menus;
 
-import java.util.ArrayList;
+
 import org.bukkit.entity.Player;
+
+import java.util.HashMap;
 
 public class MenuManager {
 
-    private static ArrayList<Menu> openMenus = new ArrayList<>();
+    private static HashMap<Player,Menu> openMenus = new HashMap<Player,Menu>();
 
     /**
      * Opens the given menu for the given Player
@@ -17,7 +19,7 @@ public class MenuManager {
             case CHARACTER_SELECTION_MENU:
                 CharacterMenu characterMenu = new CharacterMenu();
                 characterMenu.openForPlayer(player);  //Opens this menu
-                openMenus.add(characterMenu);
+                openMenus.put(player,characterMenu); //Stores the Menu the player is using
 
                 return true;
             default:
@@ -25,12 +27,16 @@ public class MenuManager {
         }
     }
 
-    public static ArrayList<Menu> getOpenMenus() {
+    public static HashMap<Player,Menu> getOpenMenus() {
         return openMenus;
     }
 
-    public static void setOpenMenus(ArrayList<Menu> openMenus) {
+    public static void setOpenMenus(HashMap<Player,Menu> openMenus) {
         MenuManager.openMenus = openMenus;
     }
 
+    public static boolean closeOpenMenus(Player player) {
+        return openMenus.remove(player) != null;
+    }
+    
 }
