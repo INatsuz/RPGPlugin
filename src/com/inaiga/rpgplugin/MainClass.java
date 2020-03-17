@@ -2,13 +2,16 @@ package com.inaiga.rpgplugin;
 
 import com.inaiga.rpgplugin.characters.RPGCharacter;
 import com.inaiga.rpgplugin.classes.Class;
+import com.inaiga.rpgplugin.customitems.CharacterMenuItem;
 import com.inaiga.rpgplugin.listeners.InventoryClickListener;
 import com.inaiga.rpgplugin.listeners.InventoryCloseListener;
 import com.inaiga.rpgplugin.listeners.LoginLogoutListener;
+import com.inaiga.rpgplugin.listeners.PlayerInteractListener;
 import com.inaiga.rpgplugin.menus.MenuManager;
 import com.inaiga.rpgplugin.menus.MenuType;
 import com.inaiga.rpgplugin.player.PlayerManager;
 import com.inaiga.rpgplugin.player.RPGPlayer;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -31,6 +34,7 @@ public class MainClass extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new LoginLogoutListener(), this);
 		getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryCloseListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerInteractListener(), this);
         instance = this;
 	}
 
@@ -95,7 +99,12 @@ public class MainClass extends JavaPlugin {
 			}
 
 			return true;
-		}
+		} else if (label.equalsIgnoreCase("charmenuitem")) {
+		    Player player = (Player) sender;	//Get the RPG Player
+            player.getInventory().addItem(new CharacterMenuItem(Material.COMPASS, 1));
+
+		    return true;
+        }
 
 		return super.onCommand(sender, command, label, args);	//Returns something
 	}
