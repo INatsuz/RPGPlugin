@@ -37,7 +37,7 @@ public class MenuManager {
 		MenuManager.openMenus = openMenus;
 	}
 
-	public static boolean closeOpenMenus(Player player) {
+	public static boolean closeOpenMenuForPlayer(Player player) {
 		openMenus.remove(player);
 		openMenus.forEach((key, value) -> System.out.println(key + " : " + value));
 

@@ -3,6 +3,7 @@ package com.inaiga.rpgplugin;
 import com.inaiga.rpgplugin.characters.RPGCharacter;
 import com.inaiga.rpgplugin.classes.Class;
 import com.inaiga.rpgplugin.listeners.InventoryClickListener;
+import com.inaiga.rpgplugin.listeners.InventoryCloseListener;
 import com.inaiga.rpgplugin.listeners.LoginLogoutListener;
 import com.inaiga.rpgplugin.menus.MenuManager;
 import com.inaiga.rpgplugin.menus.MenuType;
@@ -29,7 +30,8 @@ public class MainClass extends JavaPlugin {
 		getLogger().info("RPGPlugin just started!");
 		getServer().getPluginManager().registerEvents(new LoginLogoutListener(), this);
 		getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
-		instance = this;
+        getServer().getPluginManager().registerEvents(new InventoryCloseListener(), this);
+        instance = this;
 	}
 
 	public static MainClass getInstance() {

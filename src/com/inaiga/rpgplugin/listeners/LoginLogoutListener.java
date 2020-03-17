@@ -1,5 +1,6 @@
 package com.inaiga.rpgplugin.listeners;
 
+import com.inaiga.rpgplugin.menus.MenuManager;
 import com.inaiga.rpgplugin.player.PlayerManager;
 import com.inaiga.rpgplugin.player.RPGPlayer;
 import org.bukkit.event.EventHandler;
@@ -27,6 +28,6 @@ public class LoginLogoutListener implements Listener {
         if (rpgPlayer != null) {
             rpgPlayer.saveCharacters();
         }
+        MenuManager.closeOpenMenuForPlayer(event.getPlayer());
     }
-
 }
