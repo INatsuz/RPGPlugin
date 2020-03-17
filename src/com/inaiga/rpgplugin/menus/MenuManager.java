@@ -7,36 +7,42 @@ import java.util.HashMap;
 
 public class MenuManager {
 
-    private static HashMap<Player,Menu> openMenus = new HashMap<Player,Menu>();
+	private static HashMap<Player, Menu> openMenus = new HashMap<Player, Menu>();
 
-    /**
-     * Opens the given menu for the given Player
-     * @param player {@link org.bukkit.entity.Player} to open the menu for
-     * @param menuType {@link com.inaiga.rpgplugin.menus.MenuType} of the menu
-     * */
-    public static boolean openMenuForPlayer(Player player, MenuType menuType){
-        switch (menuType) {
-            case CHARACTER_SELECTION_MENU:
-                CharacterMenu characterMenu = new CharacterMenu();
-                characterMenu.openForPlayer(player);  //Opens this menu
-                openMenus.put(player,characterMenu); //Stores the Menu the player is using
+	/**
+	 * Opens the given menu for the given Player
+	 *
+	 * @param player   {@link org.bukkit.entity.Player} to open the menu for
+	 * @param menuType {@link com.inaiga.rpgplugin.menus.MenuType} of the menu
+	 */
+	public static boolean openMenuForPlayer(Player player, MenuType menuType) {
+		switch (menuType) {
+			case CHARACTER_SELECTION_MENU:
+				CharacterMenu characterMenu = new CharacterMenu();
+				characterMenu.openForPlayer(player);  //Opens this menu
+				openMenus.put(player, characterMenu); //Stores the Menu the player is using
 
-                return true;
-            default:
-                return false;
-        }
-    }
+				openMenus.forEach((key, value) -> System.out.println(key + " : " + value));
+				return true;
+			default:
+				return false;
+		}
+	}
 
-    public static HashMap<Player,Menu> getOpenMenus() {
-        return openMenus;
-    }
+	public static HashMap<Player, Menu> getOpenMenus() {
+		return openMenus;
+	}
 
-    public static void setOpenMenus(HashMap<Player,Menu> openMenus) {
-        MenuManager.openMenus = openMenus;
-    }
+	public static void setOpenMenus(HashMap<Player, Menu> openMenus) {
+		MenuManager.openMenus = openMenus;
+	}
 
-    public static boolean closeOpenMenus(Player player) {
-        return openMenus.remove(player) != null;
-    }
-    
+	public static boolean closeOpenMenus(Player player) {
+		openMenus.remove(player);
+		openMenus.forEach((key, value) -> System.out.println(key + " : " + value));
+
+//		return openMenus.remove(player) != null;
+		return true;
+	}
+
 }
