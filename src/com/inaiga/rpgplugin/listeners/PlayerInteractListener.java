@@ -1,6 +1,5 @@
 package com.inaiga.rpgplugin.listeners;
 
-import com.inaiga.rpgplugin.customitems.CustomItem;
 import com.inaiga.rpgplugin.customitems.CustomItems;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,6 +17,8 @@ public class PlayerInteractListener implements Listener{
                 } else if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK) {
                     value.onHit(event);
                 }
+                
+                break;
             }
         }
         System.out.println("Player Interact Event");
