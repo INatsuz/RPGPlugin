@@ -25,3 +25,7 @@ commands:
     usage: /delchar
     description: Deletes a RPG Character
     permission-message: You don't have the permission to do this command.
+  charmenuitem:
+    usage: /charmenuitem
+    description: Gives the player a character menu item
+    permission-message: You don't have the permission to do this command.

@@ -7,4 +7,5 @@ public interface CustomItem {
 
     public void onHit(PlayerInteractEvent event);
     public void onUse(PlayerInteractEvent event);
+
 }
