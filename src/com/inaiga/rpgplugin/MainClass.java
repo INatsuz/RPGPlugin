@@ -2,7 +2,7 @@ package com.inaiga.rpgplugin;
 
 import com.inaiga.rpgplugin.characters.RPGCharacter;
 import com.inaiga.rpgplugin.classes.Class;
-import com.inaiga.rpgplugin.customitems.CharacterMenuItem;
+import com.inaiga.rpgplugin.customitems.CustomItems;
 import com.inaiga.rpgplugin.listeners.InventoryClickListener;
 import com.inaiga.rpgplugin.listeners.InventoryCloseListener;
 import com.inaiga.rpgplugin.listeners.LoginLogoutListener;
@@ -101,8 +101,7 @@ public class MainClass extends JavaPlugin {
 			return true;
 		} else if (label.equalsIgnoreCase("charmenuitem")) {
 		    Player player = (Player) sender;	//Get the RPG Player
-            player.getInventory().addItem(new CharacterMenuItem(Material.COMPASS, 1));
-
+			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.CHARACTER_MENU_ITEM));
 		    return true;
         }
 
