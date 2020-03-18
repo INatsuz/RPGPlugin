@@ -102,6 +102,7 @@ public class MainClass extends JavaPlugin {
 		} else if (label.equalsIgnoreCase("charmenuitem")) {
 		    Player player = (Player) sender;	//Get the RPG Player
 			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.CHARACTER_MENU_ITEM));
+			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.STARTER_STAFF_ITEM));
 		    return true;
         }
 
