@@ -11,7 +11,6 @@ import com.inaiga.rpgplugin.menus.MenuManager;
 import com.inaiga.rpgplugin.menus.MenuType;
 import com.inaiga.rpgplugin.player.PlayerManager;
 import com.inaiga.rpgplugin.player.RPGPlayer;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -102,7 +101,7 @@ public class MainClass extends JavaPlugin {
 		} else if (label.equalsIgnoreCase("charmenuitem")) {
 		    Player player = (Player) sender;	//Get the RPG Player
 			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.CHARACTER_MENU_ITEM));
-			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.STARTER_STAFF_ITEM));
+			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.STARTER_WAND_ITEM));
 		    return true;
         }
 
