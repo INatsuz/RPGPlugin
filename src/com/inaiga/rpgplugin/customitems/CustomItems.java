@@ -47,12 +47,12 @@ public enum CustomItems implements CustomItem {
 
 			Vector direction = event.getPlayer().getEyeLocation().getDirection().clone().normalize();
 
-			Bat entity = (Bat) event.getPlayer().getWorld().spawnEntity(event.getPlayer().getEyeLocation(), EntityType.BAT);
+			Bat entity = (Bat) event.getPlayer().getWorld().spawnEntity(event.getPlayer().getLocation().add(0, 200, 0), EntityType.BAT);
 			entity.setAI(false);
 			entity.setSilent(true);
 			entity.setInvulnerable(true);
 			entity.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 1000, 1, false, false));
-			for (int i = 0; i < 20; i++) {
+			for (int i = 0; i < 40; i++) {
 				Vector newVector = direction.clone().multiply(i);
 				Location currentSpellLocation = event.getPlayer().getEyeLocation().add(newVector);
 				event.getPlayer().getWorld().spawnParticle(Particle.CRIT, currentSpellLocation, 1);
@@ -62,9 +62,13 @@ public enum CustomItems implements CustomItem {
 
 				entityList.forEach(entityItem -> {
 					if (entityItem instanceof Damageable && entityItem != event.getPlayer()) {
-						((Damageable) entityItem).damage(10);
+						((Damageable) entityItem).damage(50);
 					}
 				});
+
+				if (event.getPlayer().getWorld().getBlockAt(currentSpellLocation).getBlockData().getMaterial().isSolid()){
+					break;
+				}
 			}
 			entity.remove();
 		}
