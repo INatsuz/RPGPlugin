@@ -2,6 +2,6 @@ package com.inaiga.rpgplugin.skills;
 
 public interface Skill {
 
-    public void execute();
+    public <T> void execute(T ...args);
 
 }
