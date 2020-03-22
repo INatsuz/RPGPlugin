@@ -1,6 +1,6 @@
 package com.inaiga.rpgplugin.classes;
 
-public enum Class {
+public enum RPGClass {
     WIZARD,
     ROGUE,
     GUARDIAN,

@@ -1,7 +1,7 @@
 package com.inaiga.rpgplugin;
 
 import com.inaiga.rpgplugin.characters.RPGCharacter;
-import com.inaiga.rpgplugin.classes.Class;
+import com.inaiga.rpgplugin.classes.RPGClass;
 import com.inaiga.rpgplugin.customitems.CustomItems;
 import com.inaiga.rpgplugin.listeners.InventoryClickListener;
 import com.inaiga.rpgplugin.listeners.InventoryCloseListener;
@@ -48,7 +48,7 @@ public class MainClass extends JavaPlugin {
 			RPGPlayer rpgPlayer = PlayerManager.getRPGPlayerFromPlayer((Player) sender);	//Get the RPG Player
 
 			if (rpgPlayer != null) {
-				rpgPlayer.addCharacter(new RPGCharacter(Class.valueOf(args[0].toUpperCase()), 1));	//Add an RPG Character
+				rpgPlayer.addCharacter(new RPGCharacter(RPGClass.valueOf(args[0].toUpperCase()), 1));	//Add an RPG Character
 			}
 
 			return true;
@@ -57,10 +57,10 @@ public class MainClass extends JavaPlugin {
 			RPGPlayer rpgPlayer = PlayerManager.getRPGPlayerFromPlayer((Player) sender);	//Get the RPG Player
 
 			if (rpgPlayer != null) {
-				RPGCharacter[] RPGCharacters = rpgPlayer.getRPGCharacters();	//Get the RPG Characters of the RPG Player
+				RPGCharacter[] RPGCharacters = rpgPlayer.getRpgCharacters();	//Get the RPG Characters of the RPG Player
 				for (RPGCharacter RPGCharacter : RPGCharacters) {
 					if (RPGCharacter != null) {
-						sender.sendMessage(RPGCharacter.getCharacterClass().toString());	//Sends the Characters to the RPG Player
+						sender.sendMessage(RPGCharacter.getCharacterRPGClass().toString());	//Sends the Characters to the RPG Player
 					}
 				}
 			}
@@ -72,7 +72,7 @@ public class MainClass extends JavaPlugin {
 
 			if (rpgPlayer != null) {
 				if (rpgPlayer.chooseCharacter(Integer.parseInt(args[0]))) {
-					sender.sendMessage("Your active character is " + rpgPlayer.getActiveRPGCharacter().getCharacterClass());	//Set the RPG Character to active
+					sender.sendMessage("Your active character is " + rpgPlayer.getActiveRPGCharacter().getCharacterRPGClass());	//Set the RPG Character to active
 				} else {
 					sender.sendMessage("It wasn't possible to choose the character");    //Error
 				}

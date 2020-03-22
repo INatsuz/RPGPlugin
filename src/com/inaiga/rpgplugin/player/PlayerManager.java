@@ -15,6 +15,10 @@ public class PlayerManager {
 		players.add(new RPGPlayer(player));
 	}
 
+	public static void removePlayer(RPGPlayer rpgPlayer) {
+		players.remove(rpgPlayer);
+	}
+
 	/**
 	 * Returns the List of online RPGPlayers
 	 * @return {@link java.util.ArrayList} of {@link com.inaiga.rpgplugin.player.RPGPlayer}

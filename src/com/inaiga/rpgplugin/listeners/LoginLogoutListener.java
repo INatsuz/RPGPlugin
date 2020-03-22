@@ -28,6 +28,7 @@ public class LoginLogoutListener implements Listener {
         if (rpgPlayer != null) {
             rpgPlayer.saveCharacters();
         }
+        PlayerManager.removePlayer(rpgPlayer);
         MenuManager.closeOpenMenuForPlayer(event.getPlayer());
     }
 }

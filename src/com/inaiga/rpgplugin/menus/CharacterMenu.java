@@ -1,7 +1,7 @@
 package com.inaiga.rpgplugin.menus;
 
 import com.inaiga.rpgplugin.characters.RPGCharacter;
-import com.inaiga.rpgplugin.classes.Class;
+import com.inaiga.rpgplugin.classes.RPGClass;
 import com.inaiga.rpgplugin.player.PlayerManager;
 import com.inaiga.rpgplugin.player.RPGPlayer;
 import org.bukkit.Color;
@@ -84,7 +84,7 @@ public class CharacterMenu extends Menu {
 				for (int i = 0; i < MENU_CHARACTER_SLOTS.length; i++) {
 					if (event.getSlot() == MENU_CHARACTER_SLOTS[i]) {
 						if (rpgPlayer != null) {
-							chosenCharacter = rpgPlayer.getRPGCharacters()[i];
+							chosenCharacter = rpgPlayer.getRpgCharacters()[i];
 							if (chosenCharacter != null) {
 								menuState = MenuState.CHARACTER_OPTIONS;
 							} else {
@@ -132,7 +132,7 @@ public class CharacterMenu extends Menu {
 					menuState = MenuState.CHARACTER_SELECTION;
 					update();
 				} else if (event.getCurrentItem() != null){
-					rpgPlayer.addCharacter(new RPGCharacter(Class.valueOf(event.getCurrentItem().getItemMeta().getDisplayName().toUpperCase()), 1));
+					rpgPlayer.addCharacter(new RPGCharacter(RPGClass.valueOf(event.getCurrentItem().getItemMeta().getDisplayName().toUpperCase()), 1));
 					menuState = MenuState.CHARACTER_SELECTION;
 					update();
 				}
@@ -147,7 +147,7 @@ public class CharacterMenu extends Menu {
 		switch (menuState) {
 			case CHARACTER_SELECTION:
 				if (rpgPlayer != null) {
-					RPGCharacter[] playerRPGCharacters = rpgPlayer.getRPGCharacters();  //Get the RPGPlayer Characters
+					RPGCharacter[] playerRPGCharacters = rpgPlayer.getRpgCharacters();  //Get the RPGPlayer Characters
 
 					for (int i = 0; i < playerRPGCharacters.length; i++) {
 						if (playerRPGCharacters[i] != null) {
@@ -155,7 +155,7 @@ public class CharacterMenu extends Menu {
 							ItemMeta itemMeta = item.getItemMeta(); //Gets an ItemMeta
 
 							if (itemMeta != null) {
-								itemMeta.setDisplayName(playerRPGCharacters[i].getCharacterClass() + " - LVL " + playerRPGCharacters[i].getLevel());    //Changes the name of the ItemMeta
+								itemMeta.setDisplayName(playerRPGCharacters[i].getCharacterRPGClass() + " - LVL " + playerRPGCharacters[i].getLevel());    //Changes the name of the ItemMeta
 								item.setItemMeta(itemMeta); //Sets the correspondent ItemMeta to the item
 							}
 
@@ -191,7 +191,7 @@ public class CharacterMenu extends Menu {
 				itemMeta = item.getItemMeta(); //Gets ItemMeta
 
 				if (itemMeta != null) {
-					itemMeta.setDisplayName(chosenCharacter.getCharacterClass() + " - LVL " + chosenCharacter.getLevel());    //Changes the name of the ItemMeta
+					itemMeta.setDisplayName(chosenCharacter.getCharacterRPGClass() + " - LVL " + chosenCharacter.getLevel());    //Changes the name of the ItemMeta
 					item.setItemMeta(itemMeta); //Sets the correspondent ItemMeta to the item
 				}
 				getMenuInventory().setItem(CHARACTER_INFO_SLOT, item);   //Puts the item in the correspondent position
@@ -232,7 +232,7 @@ public class CharacterMenu extends Menu {
 				itemMeta = item.getItemMeta(); //Gets ItemMeta
 
 				if (itemMeta != null) {
-					itemMeta.setDisplayName(chosenCharacter.getCharacterClass() + " - LVL " + chosenCharacter.getLevel());    //Changes the name of the ItemMeta
+					itemMeta.setDisplayName(chosenCharacter.getCharacterRPGClass() + " - LVL " + chosenCharacter.getLevel());    //Changes the name of the ItemMeta
 					item.setItemMeta(itemMeta); //Sets the correspondent ItemMeta to the item
 				}
 				getMenuInventory().setItem(CHARACTER_INFO_SLOT, item);   //Puts the item in the correspondent position

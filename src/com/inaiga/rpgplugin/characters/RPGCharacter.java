@@ -1,52 +1,52 @@
 package com.inaiga.rpgplugin.characters;
 
+import com.inaiga.rpgplugin.classes.RPGClass;
 import com.inaiga.rpgplugin.skills.Skill;
-import com.inaiga.rpgplugin.classes.Class;
 import java.util.ArrayList;
 
 public class RPGCharacter {
 
     //Character properties
-    private Class characterClass;
+    private RPGClass characterRPGClass;
     private int level;
     private ArrayList<Skill> skills = new ArrayList<>();
 
     /**
      * Creates an RPG Character
-     * @param characterClass A value from the {@link com.inaiga.rpgplugin.classes.Class} enum
+     * @param characterRPGClass A value from the {@link RPGClass} enum
      * @param level {@link com.inaiga.rpgplugin.characters.RPGCharacter} level
      * @param skills {@link java.util.ArrayList} of the {@link com.inaiga.rpgplugin.characters.RPGCharacter} {@link com.inaiga.rpgplugin.skills.Skill}
      * */
-    public RPGCharacter(Class characterClass, int level, ArrayList<Skill> skills) {
-        this.characterClass = characterClass;
+    public RPGCharacter(RPGClass characterRPGClass, int level, ArrayList<Skill> skills) {
+        this.characterRPGClass = characterRPGClass;
         this.level = level;
         this.skills = skills;
     }
 
     /**
      * Creates an RPG Character
-     * @param characterClass Value from the {@link com.inaiga.rpgplugin.classes.Class} enum
+     * @param characterRPGClass Value from the {@link RPGClass} enum
      * @param level {@link com.inaiga.rpgplugin.characters.RPGCharacter} level
      * */
-    public RPGCharacter(Class characterClass, int level) {
-        this.characterClass = characterClass;
+    public RPGCharacter(RPGClass characterRPGClass, int level) {
+        this.characterRPGClass = characterRPGClass;
         this.level = level;
     }
 
     /**
-     * Returns the Character Class
-     * @return Value from the {@link com.inaiga.rpgplugin.classes.Class} enum
+     * Returns the Character RPGClass
+     * @return Value from the {@link RPGClass} enum
      * */
-    public Class getCharacterClass() {
-        return characterClass;
+    public RPGClass getCharacterRPGClass() {
+        return characterRPGClass;
     }
 
     /**
-     * Sets the Character Class
-     * @param characterClass Value from the {@link com.inaiga.rpgplugin.classes.Class} enum
+     * Sets the Character RPGClass
+     * @param characterRPGClass Value from the {@link RPGClass} enum
      * */
-    public void setCharacterClass(Class characterClass) {
-        this.characterClass = characterClass;
+    public void setCharacterRPGClass(RPGClass characterRPGClass) {
+        this.characterRPGClass = characterRPGClass;
     }
 
     /**
