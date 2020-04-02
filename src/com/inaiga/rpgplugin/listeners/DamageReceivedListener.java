@@ -11,11 +11,14 @@ public class DamageReceivedListener implements Listener {
 
     @EventHandler
     public void onEntityDamage(EntityDamageByEntityEvent event){
+        System.out.println("Damage Event Received");
         if(event.getDamager() instanceof Player){
+            System.out.println("Instance of player confirmed, I guess");
             Player player =(Player) event.getDamager();
-            ItemStack handItem= player.getItemOnCursor();
+            ItemStack handItem = player.getInventory().getItemInMainHand();
             if(handItem.getType() == Material.REDSTONE_BLOCK){
-                event.setDamage((double) 50);
+                System.out.println("Redstone block confirmed");
+                event.setDamage(50d);
             }
         }
     }
