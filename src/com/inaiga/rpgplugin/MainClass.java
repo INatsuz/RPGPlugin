@@ -3,7 +3,11 @@ package com.inaiga.rpgplugin;
 import com.inaiga.rpgplugin.characters.RPGCharacter;
 import com.inaiga.rpgplugin.classes.RPGClass;
 import com.inaiga.rpgplugin.customitems.CustomItems;
-import com.inaiga.rpgplugin.listeners.*;
+import com.inaiga.rpgplugin.listeners.DamageReceivedListener;
+import com.inaiga.rpgplugin.listeners.InventoryClickListener;
+import com.inaiga.rpgplugin.listeners.InventoryCloseListener;
+import com.inaiga.rpgplugin.listeners.LoginLogoutListener;
+import com.inaiga.rpgplugin.listeners.PlayerInteractListener;
 import com.inaiga.rpgplugin.menus.MenuManager;
 import com.inaiga.rpgplugin.menus.MenuType;
 import com.inaiga.rpgplugin.player.PlayerManager;
@@ -31,7 +35,7 @@ public class MainClass extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryCloseListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerInteractListener(), this);
-        getServer().getPluginManager().registerEvents(new DamageClickListener(),this);
+        getServer().getPluginManager().registerEvents(new DamageReceivedListener(),this);
         instance = this;
 	}
 
