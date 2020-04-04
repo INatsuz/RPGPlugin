@@ -1,26 +1,25 @@
 package com.inaiga.rpgplugin.customitems;
 
 import org.bukkit.Material;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public enum CustomItems {
-	STARTER_WAND_ITEM("Starter Wand", Material.BAMBOO, new StarterWand(),null),
-	INTERMEDIATE_WAND_ITEM("Intermediate Wand", Material.DEBUG_STICK, new IntermediateWand(),null),
-	CHARACTER_MENU_ITEM("Menu", Material.COMPASS, new CharacterMenuItem(),null),
-	TEST_ARMOR_ITEM("OPAF Armor", Material.CHAINMAIL_CHESTPLATE,null,new ChainmailArmorTest());
+	STARTER_WAND_ITEM("Starter Wand", Material.BAMBOO, new StarterWand()),
+	INTERMEDIATE_WAND_ITEM("Intermediate Wand", Material.DEBUG_STICK, new IntermediateWand()),
+	CHARACTER_MENU_ITEM("Menu", Material.COMPASS, new CharacterMenuItem()),
+	TEST_ARMOR_ITEM("OPAF Armor", Material.CHAINMAIL_CHESTPLATE, new ChainmailArmorTest());
 
 	private final String name;
 	private final Material material;
-	private final UsableItem classInstance;
-	private final HoldableItem classInstanceArmor;
+	private final CustomItem classInstance;
 
-	CustomItems(String name, Material material, UsableItem classInstance,HoldableItem classInstanceArmor) {
+	CustomItems(String name, Material material, CustomItem classInstance) {
 		this.name = name;
 		this.material = material;
 		this.classInstance = classInstance;
-		this.classInstanceArmor = classInstanceArmor;
 	}
 
 	public static ItemStack buildCustomItem(CustomItems item) {
@@ -32,17 +31,23 @@ public enum CustomItems {
 		return itemStack;
 	}
 
-	public void onHit(PlayerInteractEvent event){
-		this.classInstance.onHit(event);
+	public void onHit(PlayerInteractEvent event) {
+		if (classInstance instanceof UsableItem) {
+			((UsableItem)this.classInstance).onHit(event);
+		}
 	}
 
-	public void onUse(PlayerInteractEvent event){
-		this.classInstance.onUse(event);
+	public void onUse(PlayerInteractEvent event) {
+		if (classInstance instanceof UsableItem) {
+			((UsableItem)this.classInstance).onUse(event);
+		}
 	}
 
-    public void onHold(PlayerInteractEvent event){
-        this.classInstanceArmor.onHold(event);
-    }
+	public void onHitTaken(EntityDamageByEntityEvent event) {
+		if (classInstance instanceof WearableItem) {
+			((WearableItem)this.classInstance).onHitTaken(event);
+		}
+	}
 
 	public String getName() {
 		return name;
@@ -52,7 +57,8 @@ public enum CustomItems {
 		return material;
 	}
 
-    public int getArmorMultiplier() {
-        return classInstanceArmor.getArmorMultiplier();
-    }
+	public CustomItem getClassInstance() {
+		return classInstance;
+	}
+
 }

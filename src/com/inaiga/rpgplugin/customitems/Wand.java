@@ -17,11 +17,12 @@ import org.bukkit.util.Vector;
 
 public class Wand implements UsableItem {
 
-	private int damage = 0;
-	private int range = 40;
+	private final int damage;
+	private final int range;
 
-	public Wand(int damage) {
+	public Wand(int damage, int range) {
 		this.damage = damage;
+		this.range = range;
 	}
 
 	@Override

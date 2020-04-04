@@ -1,29 +1,23 @@
 package com.inaiga.rpgplugin.customitems;
 
-import com.inaiga.rpgplugin.classes.RPGClass;
-import com.inaiga.rpgplugin.player.PlayerManager;
-import com.inaiga.rpgplugin.player.RPGPlayer;
-import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-public class Armor implements HoldableItem{
-    public int reduction_multiplier;
+public class Armor implements WearableItem {
 
-    public Armor(int reduction_multiplier){
-        this.reduction_multiplier=reduction_multiplier;
-    }   //custom constructor for armors
+	public final int protection;
 
-    public int getArmorValue(){
-        return reduction_multiplier;
-    }
+	//Constructor for armor objects
+	public Armor(int protection) {
+		this.protection = protection;
+	}
 
-    @Override
-    public void onHold(PlayerInteractEvent event) {
-        //to implement combos
-    }
+	@Override
+	public void onHitTaken(EntityDamageByEntityEvent event) {
+		//to implement combos
+	}
 
-    @Override
-    public int getArmorMultiplier() {
-        return reduction_multiplier;
-    }
+	public int getProtection() {
+		return protection;
+	}
 
 }
