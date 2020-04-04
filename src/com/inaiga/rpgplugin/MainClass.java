@@ -104,7 +104,8 @@ public class MainClass extends JavaPlugin {
 		    Player player = (Player) sender;	//Get the RPG Player
 			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.CHARACTER_MENU_ITEM));
 			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.STARTER_WAND_ITEM));
-		    return true;
+			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.TEST_ARMOR_ITEM));
+			return true;
         }
 
 		return super.onCommand(sender, command, label, args);	//Returns something

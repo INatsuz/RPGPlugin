@@ -46,7 +46,7 @@ public class Wand implements UsableItem {
 
 				entityList.forEach(entityItem -> {
 					if (entityItem instanceof Damageable && entityItem != event.getPlayer()) {
-						((Damageable) entityItem).damage(50);
+						((Damageable) entityItem).damage(50,event.getPlayer());
 					}
 				});
 
