@@ -2,6 +2,7 @@ package com.inaiga.rpgplugin.listeners;
 
 import com.inaiga.rpgplugin.customitems.Armor;
 import com.inaiga.rpgplugin.customitems.CustomItems;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,25 +23,28 @@ public class DamageReceivedListener implements Listener {
         }*/
 
 		if (event != null) {
-			if (event.getDamager() instanceof Player) {
-				Player player = (Player) event.getDamager();
+			if (event.getEntity() instanceof Player) {
+				Player player = (Player) event.getEntity();
 
+				double totalProtection = 0;
 				ItemStack[] armorEquipped = player.getInventory().getArmorContents();
-				System.out.println("armor: " + armorEquipped[0]);   //botas
-				System.out.println("armor: " + armorEquipped[1]);   //calcas
-				System.out.println("armor: " + armorEquipped[2]);   //camisa
-				System.out.println("armor: " + armorEquipped[3]);   //capacete
-
-				System.out.println("\nTESTE ITEMMETA: " + armorEquipped[2].getItemMeta().getDisplayName());   //Chestplate
-
-				for (CustomItems value : CustomItems.values()) {
-					if (value.getClassInstance() instanceof Armor) {
-						if (armorEquipped[2].getItemMeta().getDisplayName().equalsIgnoreCase(value.getName())) {
-							System.out.println("Protection Value: " + ((Armor)value.getClassInstance()).getProtection());
-							event.setDamage(event.getDamage() - ((Armor)value.getClassInstance()).getProtection());
+				for (ItemStack armorPiece : armorEquipped) {
+					if (armorPiece != null) {
+						for (CustomItems value : CustomItems.values()) {
+							if (value.getClassInstance() instanceof Armor) {
+								if (armorPiece.getItemMeta().getDisplayName().equalsIgnoreCase(value.getName())) {
+									totalProtection += ((Armor) value.getClassInstance()).getProtection();
+								}
+							}
 						}
 					}
 				}
+
+				double damage = event.getDamage() - totalProtection;
+				System.out.println("Damage is supposed to be: " + damage);
+				player.sendMessage("Damage is supposed to be: " + damage);
+				event.setDamage(0);
+				((Player) event.getEntity()).setHealth(Math.max(((Player) event.getEntity()).getHealth() - damage, 0));
 			}
 		}
 	}
