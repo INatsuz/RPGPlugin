@@ -43,8 +43,13 @@ public class DamageReceivedListener implements Listener {
 				double damage = event.getDamage() - totalProtection;
 				System.out.println("Damage is supposed to be: " + damage);
 				player.sendMessage("Damage is supposed to be: " + damage);
-				event.setDamage(0);
-				((Player) event.getEntity()).setHealth(Math.max(((Player) event.getEntity()).getHealth() - damage, 0));
+				if (((Player) event.getEntity()).getHealth() - damage <= 0) {
+					((Player) event.getEntity()).setHealth(Math.max(((Player) event.getEntity()).getHealth() - damage, 1));
+					event.setDamage(Integer.MAX_VALUE);
+				} else {
+					event.setDamage(0);
+					((Player) event.getEntity()).setHealth(Math.max(((Player) event.getEntity()).getHealth() - damage, 0));
+				}
 			}
 		}
 	}
