@@ -25,6 +25,7 @@ public enum CustomItems {
 	public static ItemStack buildCustomItem(CustomItems item) {
 		ItemStack itemStack = new ItemStack(item.getMaterial(), 1);
 		ItemMeta itemMeta = itemStack.getItemMeta();
+		itemMeta.setUnbreakable(true);
 		itemMeta.setDisplayName(item.getName());
 		itemStack.setItemMeta(itemMeta);
 

@@ -3,6 +3,7 @@ package com.inaiga.rpgplugin;
 import com.inaiga.rpgplugin.characters.RPGCharacter;
 import com.inaiga.rpgplugin.classes.RPGClass;
 import com.inaiga.rpgplugin.customitems.CustomItems;
+import com.inaiga.rpgplugin.custommobs.CustomMobs;
 import com.inaiga.rpgplugin.listeners.DamageReceivedListener;
 import com.inaiga.rpgplugin.listeners.InventoryClickListener;
 import com.inaiga.rpgplugin.listeners.InventoryCloseListener;
@@ -113,6 +114,13 @@ public class MainClass extends JavaPlugin {
 			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.STARTER_WAND_ITEM));
 			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.INTERMEDIATE_WAND_ITEM));
 			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.STARTER_CHAIN_CHESTPLATE));
+
+			return true;
+        } else if (label.equalsIgnoreCase("custommob")) {
+			//Get the RPG Player
+		    Player player = (Player) sender;
+
+			CustomMobs.spawnCustomMob(CustomMobs.AZAROTH_ZOMBIE, player.getLocation());
 
 			return true;
         }
