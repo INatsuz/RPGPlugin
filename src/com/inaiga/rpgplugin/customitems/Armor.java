@@ -13,7 +13,7 @@ public class Armor implements WearableItem {
 
 	@Override
 	public void onHitTaken(EntityDamageByEntityEvent event) {
-		//to implement combos
+
 	}
 
 	public int getProtection() {

@@ -31,11 +31,15 @@ public class MainClass extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		getLogger().info("RPGPlugin just started!");
+
+		//Registering the event listeners
 		getServer().getPluginManager().registerEvents(new LoginLogoutListener(), this);
 		getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryCloseListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerInteractListener(), this);
         getServer().getPluginManager().registerEvents(new DamageReceivedListener(),this);
+
+        //Storing the main instance of the plugin
         instance = this;
 	}
 
@@ -100,11 +104,16 @@ public class MainClass extends JavaPlugin {
 			}
 
 			return true;
-		} else if (label.equalsIgnoreCase("charmenuitem")) {
-		    Player player = (Player) sender;	//Get the RPG Player
+		} else if (label.equalsIgnoreCase("customitems")) {
+			//Get the RPG Player
+		    Player player = (Player) sender;
+
+		    //Gives all the custom items so far...
 			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.CHARACTER_MENU_ITEM));
 			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.STARTER_WAND_ITEM));
-			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.TEST_ARMOR_ITEM));
+			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.INTERMEDIATE_WAND_ITEM));
+			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.STARTER_CHAIN_CHESTPLATE));
+
 			return true;
         }
 

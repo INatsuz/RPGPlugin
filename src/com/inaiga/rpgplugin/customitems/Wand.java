@@ -29,37 +29,39 @@ public class Wand implements UsableItem {
 	public void onHit(PlayerInteractEvent event) {
 		RPGPlayer rpgPlayer = PlayerManager.getRPGPlayerFromPlayer(event.getPlayer());
 
-		if (!rpgPlayer.isDoingAbility()) {
-			Vector direction = event.getPlayer().getEyeLocation().getDirection().clone().normalize();
+		if (rpgPlayer != null) {
+			if (!rpgPlayer.isDoingAbility()) {
+				Vector direction = event.getPlayer().getEyeLocation().getDirection().clone().normalize();
 
-			Bat entity = (Bat) event.getPlayer().getWorld().spawnEntity(event.getPlayer().getLocation().add(0, 200, 0), EntityType.BAT);
-			entity.setAI(false);
-			entity.setSilent(true);
-			entity.setInvulnerable(true);
-			entity.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 10, 1, false, false));
-			for (int i = 0; i < range; i++) {
-				Vector newVector = direction.clone().multiply(i);
-				Location currentSpellLocation = event.getPlayer().getEyeLocation().add(newVector);
-				event.getPlayer().getWorld().spawnParticle(Particle.CRIT, currentSpellLocation, 1);
+				Bat entity = (Bat) event.getPlayer().getWorld().spawnEntity(event.getPlayer().getLocation().add(0, 200, 0), EntityType.BAT);
+				entity.setAI(false);
+				entity.setSilent(true);
+				entity.setInvulnerable(true);
+				entity.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 10, 1, false, false));
+				for (int i = 0; i < range; i++) {
+					Vector newVector = direction.clone().multiply(i);
+					Location currentSpellLocation = event.getPlayer().getEyeLocation().add(newVector);
+					event.getPlayer().getWorld().spawnParticle(Particle.CRIT, currentSpellLocation, 1);
 
-				entity.teleport(currentSpellLocation);
-				List<Entity> entityList = entity.getNearbyEntities(1, 1, 1);
+					entity.teleport(currentSpellLocation);
+					List<Entity> entityList = entity.getNearbyEntities(1, 1, 1);
 
-				entityList.forEach(entityItem -> {
-					if (entityItem instanceof Damageable && entityItem != event.getPlayer()) {
-						((Damageable) entityItem).damage(50,event.getPlayer());
+					entityList.forEach(entityItem -> {
+						if (entityItem instanceof Damageable && entityItem != event.getPlayer()) {
+							((Damageable) entityItem).damage(damage, event.getPlayer());
+						}
+					});
+
+					if (event.getPlayer().getWorld().getBlockAt(currentSpellLocation).getBlockData().getMaterial().isSolid()) {
+						break;
 					}
-				});
-
-				if (event.getPlayer().getWorld().getBlockAt(currentSpellLocation).getBlockData().getMaterial().isSolid()) {
-					break;
 				}
+
+				entity.remove();
 			}
 
-			entity.remove();
+			rpgPlayer.handleInteraction(false);
 		}
-
-		rpgPlayer.handleInteraction(false);
 	}
 
 	@Override

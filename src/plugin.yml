@@ -2,8 +2,8 @@ main: com.inaiga.rpgplugin.MainClass
 name: RPGPlugin
 version: 1.0
 api-version: 1.14
-author: Tiago & Vasco
-description: RPG é fixe
+author: INatsuz & Varsenaiga & TheFirePrince & GoddessAsuna & Robiborg
+description: All in one RPG experience, with abilities, custom items and an inbuilt questing system.
 commands:
   class:
     usage: /class <CharacterClass>
@@ -25,7 +25,7 @@ commands:
     usage: /delchar
     description: Deletes a RPG Character
     permission-message: You don't have the permission to do this command.
-  charmenuitem:
-    usage: /charmenuitem
-    description: Gives the player a character menu item
+  customitems:
+    usage: /customitems
+    description: Gives the player all the custom items
     permission-message: You don't have the permission to do this command.

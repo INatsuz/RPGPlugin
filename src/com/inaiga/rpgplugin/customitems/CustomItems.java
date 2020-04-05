@@ -9,8 +9,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 public enum CustomItems {
 	STARTER_WAND_ITEM("Starter Wand", Material.BAMBOO, new StarterWand()),
 	INTERMEDIATE_WAND_ITEM("Intermediate Wand", Material.DEBUG_STICK, new IntermediateWand()),
-	CHARACTER_MENU_ITEM("Menu", Material.COMPASS, new CharacterMenuItem()),
-	TEST_ARMOR_ITEM("OPAF Armor", Material.CHAINMAIL_CHESTPLATE, new ChainmailArmorTest());
+	CHARACTER_MENU_ITEM("Character Selection Menu", Material.COMPASS, new CharacterMenuItem()),
+	STARTER_CHAIN_CHESTPLATE("Starter Chain Chestplate", Material.CHAINMAIL_CHESTPLATE, new StarterChainChestplate());
 
 	private final String name;
 	private final Material material;
