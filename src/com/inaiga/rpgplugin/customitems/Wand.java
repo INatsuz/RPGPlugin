@@ -5,7 +5,9 @@ import com.inaiga.rpgplugin.player.PlayerManager;
 import com.inaiga.rpgplugin.player.RPGPlayer;
 import java.util.List;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Bat;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
@@ -41,7 +43,12 @@ public class Wand implements UsableItem {
 				for (int i = 0; i < range; i++) {
 					Vector newVector = direction.clone().multiply(i);
 					Location currentSpellLocation = event.getPlayer().getEyeLocation().add(newVector);
-					event.getPlayer().getWorld().spawnParticle(Particle.CRIT, currentSpellLocation, 1);
+
+					if (event.getPlayer().getWorld().getBlockAt(currentSpellLocation).getBlockData().getMaterial().isSolid()) {
+						break;
+					}
+
+					event.getPlayer().getWorld().spawnParticle(Particle.CRIT, currentSpellLocation, 5, 0.3, 0.3, 0.3, 0.05, null);
 
 					entity.teleport(currentSpellLocation);
 					List<Entity> entityList = entity.getNearbyEntities(1, 1, 1);
@@ -52,9 +59,6 @@ public class Wand implements UsableItem {
 						}
 					});
 
-					if (event.getPlayer().getWorld().getBlockAt(currentSpellLocation).getBlockData().getMaterial().isSolid()) {
-						break;
-					}
 				}
 
 				entity.remove();
