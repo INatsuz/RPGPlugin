@@ -2,7 +2,8 @@ package com.inaiga.rpgplugin.skills;
 
 public enum Skills {
 	BACKSTAB(new Backstab(), new int[]{1, 0, 0, 0}),
-	SNEAK(new Sneak(), new int[]{1, 0, 0, 1});
+	SNEAK(new Sneak(), new int[]{1, 0, 0, 1}),
+	SWIFT(new Swift(), new int[]{1, 1, 0, 1});
 
 	private final Skill skill;
 	private final int[] sequence;

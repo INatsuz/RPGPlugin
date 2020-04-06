@@ -1,21 +1,12 @@
 package com.inaiga.rpgplugin.custommobs;
 
-import com.inaiga.rpgplugin.MainClass;
-import com.inaiga.rpgplugin.customitems.CustomItems;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Random;
-import javax.annotation.Nonnull;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Mob;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.loot.LootContext;
-import org.bukkit.loot.LootTable;
+
+import javax.annotation.Nonnull;
 
 public enum CustomMobs {
 	AZAROTH_ZOMBIE("AZAROTH ZOMBIE", new AzarothZombie(), EntityType.ZOMBIE);
