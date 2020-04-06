@@ -1,6 +1,5 @@
 package com.inaiga.rpgplugin.skills;
 
-import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -10,15 +9,21 @@ import java.util.List;
 
 public class Swift implements Skill {
 
+    private final int MAX_TIME = 7;
+    private final int BASE_TIME = 3;
+    private final int MAX_DISTANCE = 5;
+
     @Override
     public <T> void execute(T... args) {
         Player player = (Player) args[0];
 
-        List<Entity> entityList = player.getNearbyEntities(5, 5, 5);
+        List<Entity> entityList = player.getNearbyEntities(MAX_DISTANCE, MAX_DISTANCE, MAX_DISTANCE);
 
+        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * MAX_TIME, 1, false, false));
         entityList.forEach(entityItem -> {
             if(entityItem instanceof Player) {
-                ((Player) entityItem).addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * 5, 1, false, false));
+            int duration = (int) Math.round(MAX_TIME - ((MAX_TIME - BASE_TIME) * player.getLocation().distance(entityItem.getLocation())/MAX_DISTANCE));
+                ((Player) entityItem).addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * duration, 0, false, false));
             }
         });
     }
