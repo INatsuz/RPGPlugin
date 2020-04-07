@@ -14,7 +14,7 @@ public class DamageReceivedListener implements Listener {
 	public void onEntityDamage(EntityDamageByEntityEvent event) {
 		if (event != null) {
 			if (event.getEntity() instanceof Player) {
-				Player player = (Player ) event.getEntity();
+				Player player = (Player) event.getEntity();
 
 				double totalProtection = 0;
 				ItemStack[] armorEquipped = player.getInventory().getArmorContents();
@@ -34,11 +34,17 @@ public class DamageReceivedListener implements Listener {
 				double damage = event.getDamage() - totalProtection;
 				System.out.println("Damage is supposed to be: " + damage);
 				player.sendMessage("Damage is supposed to be: " + damage);
-				if (((Player) event.getEntity()).getHealth() - damage <= 0) {
-					((Player) event.getEntity()).setHealth(Math.max(((Player) event.getEntity()).getHealth() - damage, 1));
-					event.setDamage(Integer.MAX_VALUE);
+				if (damage > 0) {
+					if (((Player) event.getEntity()).getHealth() - damage <= 0) {
+						((Player) event.getEntity()).setHealth(1);
+						player.sendMessage("Wouldve killed you! Dmg: " + damage + " / Health Set to: " + ((Player) event.getEntity()).getHealth());
+						event.setDamage(Integer.MAX_VALUE);
+					} else {
+						((Player) event.getEntity()).setHealth(Math.max(((Player) event.getEntity()).getHealth() - damage, 0));
+						player.sendMessage("Would not have killed you! Dmg: " + damage + " / Health Set to: " + ((Player) event.getEntity()).getHealth());
+						event.setDamage(0);
+					}
 				} else {
-					((Player) event.getEntity()).setHealth(Math.max(((Player) event.getEntity()).getHealth() - damage, 0));
 					event.setDamage(0);
 				}
 			}

@@ -19,11 +19,11 @@ public class Swift implements Skill {
 
         List<Entity> entityList = player.getNearbyEntities(MAX_DISTANCE, MAX_DISTANCE, MAX_DISTANCE);
 
-        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * MAX_TIME, 1, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * MAX_TIME, 1, false, false), true);
         entityList.forEach(entityItem -> {
             if(entityItem instanceof Player) {
             int duration = (int) Math.round(MAX_TIME - ((MAX_TIME - BASE_TIME) * player.getLocation().distance(entityItem.getLocation())/MAX_DISTANCE));
-                ((Player) entityItem).addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * duration, 0, false, false));
+                ((Player) entityItem).addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * duration, 0, false, false), true);
             }
         });
     }

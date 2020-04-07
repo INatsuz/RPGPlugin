@@ -5,9 +5,7 @@ import com.inaiga.rpgplugin.player.PlayerManager;
 import com.inaiga.rpgplugin.player.RPGPlayer;
 import java.util.List;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.Particle;
-import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Bat;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
@@ -17,12 +15,14 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
-public class Wand implements UsableItem {
+public class Wand extends ClassUsableItem {
 
 	private final int damage;
 	private final int range;
 
 	public Wand(int damage, int range) {
+		super(RPGClass.WIZARD);
+
 		this.damage = damage;
 		this.range = range;
 	}
@@ -32,6 +32,8 @@ public class Wand implements UsableItem {
 		RPGPlayer rpgPlayer = PlayerManager.getRPGPlayerFromPlayer(event.getPlayer());
 
 		if (rpgPlayer != null) {
+			if (!isPlayerAllowedToUseItem(rpgPlayer)) return;
+
 			if (!rpgPlayer.isDoingAbility()) {
 				Vector direction = event.getPlayer().getEyeLocation().getDirection().clone().normalize();
 
@@ -72,10 +74,10 @@ public class Wand implements UsableItem {
 	public void onUse(PlayerInteractEvent event) {
 		RPGPlayer rpgPlayer = PlayerManager.getRPGPlayerFromPlayer(event.getPlayer());
 
-		if (rpgPlayer.getActiveRPGCharacter() != null) {
-			if (rpgPlayer.getActiveRPGCharacter().getCharacterRPGClass() == RPGClass.WIZARD) {
-				rpgPlayer.handleInteraction(true);
-			}
+		if (rpgPlayer != null) {
+			if (!isPlayerAllowedToUseItem(rpgPlayer)) return;
+
+			rpgPlayer.handleInteraction(true);
 		}
 	}
 

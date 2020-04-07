@@ -10,7 +10,7 @@ public class Sneak implements Skill {
 	public <T> void execute(T... args) {
 		Player player = (Player) args[0];
 
-		player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 5, 0, false, false));
+		player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 5, 0, false, false), true);
 	}
 
 }
