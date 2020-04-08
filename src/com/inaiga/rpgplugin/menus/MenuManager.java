@@ -41,7 +41,6 @@ public class MenuManager {
 		openMenus.remove(player);
 		openMenus.forEach((key, value) -> System.out.println(key + " : " + value));
 
-//		return openMenus.remove(player) != null;
 		return true;
 	}
 

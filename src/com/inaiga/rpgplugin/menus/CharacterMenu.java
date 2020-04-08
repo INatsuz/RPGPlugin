@@ -2,11 +2,8 @@ package com.inaiga.rpgplugin.menus;
 
 import com.inaiga.rpgplugin.characters.RPGCharacter;
 import com.inaiga.rpgplugin.classes.RPGClass;
-import com.inaiga.rpgplugin.player.PlayerManager;
-import com.inaiga.rpgplugin.player.RPGPlayer;
 import org.bukkit.Color;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -53,9 +50,6 @@ public class CharacterMenu extends Menu {
 
 	private static MenuState menuState = MenuState.CHARACTER_SELECTION;
 
-	private Player player = null;
-	private RPGPlayer rpgPlayer = null;
-
 	private RPGCharacter chosenCharacter = null;
 
 	/**
@@ -65,28 +59,14 @@ public class CharacterMenu extends Menu {
 		super(menuType);
 	}
 
-	/**
-	 * Opens the CharacterMenu for the given Player
-	 *
-	 * @param player {@link org.bukkit.entity.Player}
-	 */
-	@Override
-	public void openForPlayer(Player player) {
-		this.player = player;
-		rpgPlayer = PlayerManager.getRPGPlayerFromPlayer(player);
-		update();
-
-		player.openInventory(getMenuInventory());   //Opens the Menu
-	}
-
 	@Override
 	public void handleClick(InventoryClickEvent event) {
 		switch (menuState) {
 			case CHARACTER_SELECTION:
 				for (int i = 0; i < MENU_CHARACTER_SLOTS.length; i++) {
 					if (event.getSlot() == MENU_CHARACTER_SLOTS[i]) {
-						if (rpgPlayer != null) {
-							chosenCharacter = rpgPlayer.getRpgCharacters()[i];
+						if (getRpgPlayer() != null) {
+							chosenCharacter = getRpgPlayer().getRpgCharacters()[i];
 							if (chosenCharacter != null) {
 								menuState = MenuState.CHARACTER_OPTIONS;
 							} else {
@@ -99,17 +79,17 @@ public class CharacterMenu extends Menu {
 				break;
 			case CHARACTER_OPTIONS:
 				if (event.getSlot() == PLAY_SLOT) {
-					if (rpgPlayer != null) {
-						rpgPlayer.chooseCharacter(chosenCharacter);
-						player.closeInventory();
+					if (getRpgPlayer() != null) {
+						getRpgPlayer().chooseCharacter(chosenCharacter);
+						getPlayer().closeInventory();
 					}
 				} else if (event.getSlot() == DELETE_SLOT) {
-					if (rpgPlayer != null) {
+					if (getRpgPlayer() != null) {
 						menuState = MenuState.CHARACTER_DELETE_CONFIRMATION;
 						update();
 					}
 				} else if (event.getSlot() == BACK_SLOT) {
-					if (rpgPlayer != null) {
+					if (getRpgPlayer() != null) {
 						menuState = MenuState.CHARACTER_SELECTION;
 						update();
 					}
@@ -117,13 +97,13 @@ public class CharacterMenu extends Menu {
 				break;
 			case CHARACTER_DELETE_CONFIRMATION:
 				if (event.getSlot() == DELETE_YES_SLOT) {
-					if (rpgPlayer != null) {
-						rpgPlayer.deleteCharacter(chosenCharacter);
+					if (getRpgPlayer() != null) {
+						getRpgPlayer().deleteCharacter(chosenCharacter);
 						menuState = MenuState.CHARACTER_SELECTION;
 						update();
 					}
 				} else if (event.getSlot() == DELETE_NO_SLOT) {
-					if (rpgPlayer != null) {
+					if (getRpgPlayer() != null) {
 						menuState = MenuState.CHARACTER_OPTIONS;
 						update();
 					}
@@ -134,7 +114,7 @@ public class CharacterMenu extends Menu {
 					menuState = MenuState.CHARACTER_SELECTION;
 					update();
 				} else if (event.getCurrentItem() != null){
-					rpgPlayer.addCharacter(new RPGCharacter(RPGClass.valueOf(event.getCurrentItem().getItemMeta().getDisplayName().toUpperCase()), 1));
+					getRpgPlayer().addCharacter(new RPGCharacter(RPGClass.valueOf(event.getCurrentItem().getItemMeta().getDisplayName().toUpperCase()), 1));
 					menuState = MenuState.CHARACTER_SELECTION;
 					update();
 				}
@@ -143,13 +123,14 @@ public class CharacterMenu extends Menu {
 		System.out.println("Chill out, I'm handling it");
 	}
 
-	private void update() {
+	@Override
+	public void update() {
 		getMenuInventory().clear(); //Clear the Inventory of the menu
 
 		switch (menuState) {
 			case CHARACTER_SELECTION:
-				if (rpgPlayer != null) {
-					RPGCharacter[] playerRPGCharacters = rpgPlayer.getRpgCharacters();  //Get the RPGPlayer Characters
+				if (getRpgPlayer() != null) {
+					RPGCharacter[] playerRPGCharacters = getRpgPlayer().getRpgCharacters();  //Get the RPGPlayer Characters
 
 					for (int i = 0; i < playerRPGCharacters.length; i++) {
 						if (playerRPGCharacters[i] != null) {
