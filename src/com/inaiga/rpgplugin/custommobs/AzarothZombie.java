@@ -14,6 +14,7 @@ public class AzarothZombie implements CustomMob {
 		Zombie zombie = (Zombie) entity;
 		zombie.setBaby(false);
 		zombie.getEquipment().setChestplate(CustomItems.buildCustomItem(CustomItems.STARTER_CHAIN_CHESTPLATE));
+		zombie.setLootTable(null);
 		zombie.getAttribute(Attribute.GENERIC_ARMOR).setBaseValue(0);
 		zombie.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(1000);
 		zombie.setHealth(1000);

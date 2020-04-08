@@ -14,7 +14,11 @@ public abstract class ClassUsableItem implements UsableItem {
 	}
 
 	public boolean isPlayerAllowedToUseItem(RPGPlayer rpgPlayer){
-		return classes.contains(rpgPlayer.getActiveRPGCharacter().getCharacterRPGClass());
+		if (rpgPlayer.getActiveRPGCharacter() != null) {
+			return classes.contains(rpgPlayer.getActiveRPGCharacter().getCharacterRPGClass());
+		} else {
+			return false;
+		}
 	}
 
 }

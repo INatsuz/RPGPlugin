@@ -49,7 +49,9 @@ public class CharacterMenu extends Menu {
 	private static final int WIZARD_CLASS_SLOT = 16;
 	private static final Material WIZARD_CLASS_ITEM = Material.DEBUG_STICK;
 
-	private MenuState menuState = MenuState.CHARACTER_SELECTION;
+	private static final MenuType menuType = MenuType.CHARACTER_SELECTION_MENU;
+
+	private static MenuState menuState = MenuState.CHARACTER_SELECTION;
 
 	private Player player = null;
 	private RPGPlayer rpgPlayer = null;
@@ -60,7 +62,7 @@ public class CharacterMenu extends Menu {
 	 * Constructor for the CharacterMenu class
 	 */
 	CharacterMenu() {
-		super(MenuType.CHARACTER_SELECTION_MENU.getName(), MenuType.CHARACTER_SELECTION_MENU.getSlots());
+		super(menuType);
 	}
 
 	/**

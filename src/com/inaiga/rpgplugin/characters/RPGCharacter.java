@@ -1,15 +1,16 @@
 package com.inaiga.rpgplugin.characters;
 
 import com.inaiga.rpgplugin.classes.RPGClass;
-import com.inaiga.rpgplugin.skills.Skill;
+import com.inaiga.rpgplugin.skills.Skills;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class RPGCharacter {
 
     //Character properties
     private RPGClass characterRPGClass;
     private int level;
-    private ArrayList<Skill> skills = new ArrayList<>();
+    private ArrayList<Skills> skills = new ArrayList<>();
 
     /**
      * Creates an RPG Character
@@ -17,7 +18,13 @@ public class RPGCharacter {
      * @param level {@link com.inaiga.rpgplugin.characters.RPGCharacter} level
      * @param skills {@link java.util.ArrayList} of the {@link com.inaiga.rpgplugin.characters.RPGCharacter} {@link com.inaiga.rpgplugin.skills.Skill}
      * */
-    public RPGCharacter(RPGClass characterRPGClass, int level, ArrayList<Skill> skills) {
+    public RPGCharacter(RPGClass characterRPGClass, int level, Skills... skills) {
+        this.characterRPGClass = characterRPGClass;
+        this.level = level;
+        this.skills = new ArrayList<>(Arrays.asList(skills));
+    }
+
+    public RPGCharacter(RPGClass characterRPGClass, int level, ArrayList<Skills> skills) {
         this.characterRPGClass = characterRPGClass;
         this.level = level;
         this.skills = skills;
@@ -69,7 +76,7 @@ public class RPGCharacter {
      * Returns the Character Skills
      * @return {@link java.util.ArrayList} of {@link com.inaiga.rpgplugin.characters.RPGCharacter} {@link com.inaiga.rpgplugin.skills.Skill}
      * */
-    public ArrayList<Skill> getSkills() {
+    public ArrayList<Skills> getSkills() {
         return skills;
     }
 
@@ -77,18 +84,12 @@ public class RPGCharacter {
      * Sets the Character Skills
      * @param skills  {@link java.util.ArrayList} of {@link com.inaiga.rpgplugin.characters.RPGCharacter} {@link com.inaiga.rpgplugin.skills.Skill}
      * */
-    public void setSkills(ArrayList<Skill> skills) {
+    public void setSkills(ArrayList<Skills> skills) {
         this.skills = skills;
     }
 
-    /**
-     * Use the selected Skill
-     * @param skill {@link com.inaiga.rpgplugin.skills.Skill} to be used by the {@link com.inaiga.rpgplugin.characters.RPGCharacter}
-     * */
-    public void useSkill(Skill skill){
-        if (skills.contains(skill)){
-            skill.execute();
-        }
+    public void addSkill(Skills skill){
+        skills.add(skill);
     }
 
 }

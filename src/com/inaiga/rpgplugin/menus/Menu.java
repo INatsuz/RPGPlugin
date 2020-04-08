@@ -7,6 +7,8 @@ import org.bukkit.inventory.Inventory;
 
 public abstract class Menu {
 
+    private MenuType menuType = null;
+
     private Inventory menuInventory = null;
     private String name;
     private int slots;
@@ -16,9 +18,10 @@ public abstract class Menu {
      * @param name The name of the Menu as a String
      * @param slots Number of slots in the Menu as an int
      * */
-    Menu(String name, int slots) {
-        this.name = name;
-        this.slots = slots;
+    Menu(MenuType menuType) {
+        this.menuType = menuType;
+        this.name = menuType.getName();
+        this.slots = menuType.getSlots();
 
         menuInventory = Bukkit.createInventory(null, slots, name);  //Create an inventory
     }
