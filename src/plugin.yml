@@ -17,9 +17,9 @@ commands:
     usage: /choosechar <index>
     description: Chooses a character and sets it to your active character
     permission-message: You don't have the permission to do this command.
-  pickchar:
-    usage: /pickchar
-    description: Opens the RPG Characters Selection Menu
+  skillmenu:
+    usage: /skillmenu
+    description: Opens the Skill Tree Menu
     permission-message: You don't have the permission to do this command.
   delchar:
     usage: /delchar

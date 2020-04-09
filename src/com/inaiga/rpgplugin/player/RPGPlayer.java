@@ -188,9 +188,12 @@ public class RPGPlayer {
 
 					JSONArray skillsArray = (JSONArray) characterJson.get("skills");
 					ArrayList<Skills> skills = new ArrayList<>();
-					for (int k = 0; k < skillsArray.size(); k++) {
-						skills.add(Skills.valueOf((String) skillsArray.get(k)));
+					if(skillsArray != null && !skillsArray.isEmpty()) {
+						for (int k = 0; k < skillsArray.size(); k++) {
+							skills.add(Skills.valueOf((String) skillsArray.get(k)));
+						}
 					}
+
 					RPGCharacters[i] = new RPGCharacter(RPGClass.valueOf(characterJson.get("class").toString()), Integer.parseInt(characterJson.get("level").toString()), skills);    //Puts the Character in the Array of rpgCharacters
 
 					System.out.println(characterJson.get("class"));

@@ -87,8 +87,8 @@ public class MainClass extends JavaPlugin {
 
 			return true;
 		//Opens the RPG Characters Selection Menu
-		} else if (label.equalsIgnoreCase("pickchar")) {
-			MenuManager.openMenuForPlayer((Player) sender, MenuType.CHARACTER_SELECTION_MENU);	//Opens the Menu
+		} else if (label.equalsIgnoreCase("skillmenu")) {
+			MenuManager.openMenuForPlayer((Player) sender, MenuType.SKILL_TREE_MENU);	//Opens the Menu
 
 			return true;
 		//Deletes a RPG Character

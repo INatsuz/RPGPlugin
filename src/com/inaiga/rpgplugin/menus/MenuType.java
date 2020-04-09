@@ -2,7 +2,7 @@ package com.inaiga.rpgplugin.menus;
 
 public enum MenuType {
 	CHARACTER_SELECTION_MENU("CHARACTER SELECTION", 36),
-	SKILL_TREE_MENU("SKILLS", 63);
+	SKILL_TREE_MENU("SKILLS", 45);
 
 	private final String name;
 	private final int slots;

@@ -24,6 +24,13 @@ public class MenuManager {
 
 				openMenus.forEach((key, value) -> System.out.println(key + " : " + value));
 				return true;
+			case SKILL_TREE_MENU:
+				SkillTreeMenu skillMenu = new SkillTreeMenu();
+				skillMenu.openForPlayer(player);  //Opens this menu
+				openMenus.put(player, skillMenu); //Stores the Menu the player is using
+
+				openMenus.forEach((key, value) -> System.out.println(key + " : " + value));
+				return true;
 			default:
 				return false;
 		}
