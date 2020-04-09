@@ -17,12 +17,12 @@ public class SkillTreeMenu extends Menu {
 
     private static final int[][] SKILL_SLOTS = {{10, 11, 12, 13, 14, 15, 16}, {28, 29, 30, 31, 32, 33, 34}};
     private static final int FIRST_SKILL_SLOT = 18;
-    private static final Material SKILL_UNLOCKED = Material.LIME_STAINED_GLASS_PANE;
-    private static final Material SKILL_LOCKED = Material.GRAY_STAINED_GLASS_PANE;
+    private static final Material SKILL_UNLOCKED = Material.GRAY_STAINED_GLASS_PANE;
+    private static final Material SKILL_LOCKED = Material.LIME_STAINED_GLASS_PANE;
 
     private static final MenuType menuType = MenuType.SKILL_TREE_MENU;
 
-    private static MenuState menuState = MenuState.SKILL_SELECTION;
+    private MenuState menuState = MenuState.SKILL_SELECTION;
 
     /**
      * Constructor for the SkillTreeMenu
@@ -90,13 +90,15 @@ public class SkillTreeMenu extends Menu {
                             itemMeta = item.getItemMeta(); //Gets an ItemMeta
 
                             if (itemMeta != null) {
-                                itemMeta.setDisplayName(firstSkill.name().replaceAll("_",  " "));    //Changes the name of the ItemMeta
+                                itemMeta.setDisplayName(nextSkill.name().replaceAll("_",  " "));    //Changes the name of the ItemMeta
                                 item.setItemMeta(itemMeta); //Sets the correspondent ItemMeta to the item
                             }
 
                             getMenuInventory().setItem(SKILL_SLOTS[i][j], item);   //Puts the item in the correspondent position
 
                             if (!nextSkill.getNextSkills().isEmpty()) {
+                                nextSkill = nextSkill.getNextSkills().get(0);
+                            } else {
                                 break;
                             }
                         }

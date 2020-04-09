@@ -48,7 +48,7 @@ public class CharacterMenu extends Menu {
 
 	private static final MenuType menuType = MenuType.CHARACTER_SELECTION_MENU;
 
-	private static MenuState menuState = MenuState.CHARACTER_SELECTION;
+	private MenuState menuState = MenuState.CHARACTER_SELECTION;
 
 	private RPGCharacter chosenCharacter = null;
 
