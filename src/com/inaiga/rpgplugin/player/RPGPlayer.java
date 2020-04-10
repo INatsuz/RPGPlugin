@@ -199,6 +199,7 @@ public class RPGPlayer {
 					System.out.println(characterJson.get("class"));
 					System.out.println(characterJson.get("level"));
 				}
+				reader.close();
 			}
 
 		} catch (ParseException | IOException e) {
