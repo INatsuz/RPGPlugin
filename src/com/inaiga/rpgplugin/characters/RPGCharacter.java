@@ -92,4 +92,12 @@ public class RPGCharacter {
         skills.add(skill);
     }
 
+    public boolean unlockSkill(Skills skill){
+        if (skills.contains(skill) || (!skills.contains(skill.getRequiredSkill()) && skill.getRequiredSkill() != null) || skill.getRpgClass() != characterRPGClass) {
+            return false;
+        }
+        skills.add(skill);
+        return true;
+    }
+
 }

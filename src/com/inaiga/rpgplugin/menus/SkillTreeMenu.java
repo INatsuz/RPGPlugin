@@ -68,23 +68,24 @@ public class SkillTreeMenu extends Menu {
 					menuState = MenuState.SKILL_OPTIONS;
 					update();
 					break;
-
-				} else if (Arrays.asList(SKILL_SLOTS[0]).contains(event.getSlot())) {
+				} else if (event.getSlot() >= SKILL_SLOTS[0][0] && event.getSlot() <= SKILL_SLOTS[0][SKILL_SLOTS[0].length - 1]) {
+					System.out.println("Found first row skill");
 					chosenSkill = firstSkill.getNextSkills().get(0);
 					for (int i = 0; i < SKILL_SLOTS[0].length; i++) {
 						if (event.getSlot() == SKILL_SLOTS[0][i]) {
 							menuState = MenuState.SKILL_OPTIONS;
-                            update();
+							update();
 							break;
 						}
 						chosenSkill = chosenSkill.getNextSkills().get(0);
 					}
-				} else if (Arrays.asList(SKILL_SLOTS[1]).contains(event.getSlot())) {
+				} else if (event.getSlot() >= SKILL_SLOTS[1][0] && event.getSlot() <= SKILL_SLOTS[1][SKILL_SLOTS[1].length - 1]) {
+					System.out.println("Found second row skill");
 					chosenSkill = firstSkill.getNextSkills().get(1);
 					for (int i = 0; i < SKILL_SLOTS[1].length; i++) {
 						if (event.getSlot() == SKILL_SLOTS[1][i]) {
 							menuState = MenuState.SKILL_OPTIONS;
-                            update();
+							update();
 							break;
 						}
 						chosenSkill = chosenSkill.getNextSkills().get(0);
@@ -93,49 +94,53 @@ public class SkillTreeMenu extends Menu {
 
 				break;
 			case SKILL_OPTIONS:
-                if (getRpgPlayer().getActiveRPGCharacter().getSkills().contains(chosenSkill)) {
-                    if(event.getSlot() == UPGRADE_SKILL_SLOT) {
-                        menuState = MenuState.SKILL_UPGRADE_CONFIRMATION;
-                        update();
-                        break;
-                    } else if (event.getSlot() == BACK_SLOT){
-                        menuState = MenuState.SKILL_SELECTION;
-                        update();
-                        break;
-                    }
-                } else {
-                    if (event.getSlot() == UNLOCK_SKILL_SLOT) {
-                        menuState = MenuState.SKILL_UNLOCK_CONFIRMATION;
-                        update();
-                        break;
-                    } else if (event.getSlot() == BACK_SLOT) {
-                        menuState = MenuState.SKILL_SELECTION;
-                        update();
-                        break;
-                    }
-                }
+				if (getRpgPlayer().getActiveRPGCharacter().getSkills().contains(chosenSkill)) {
+					if (event.getSlot() == UPGRADE_SKILL_SLOT) {
+						menuState = MenuState.SKILL_UPGRADE_CONFIRMATION;
+						update();
+						break;
+					} else if (event.getSlot() == BACK_SLOT) {
+						menuState = MenuState.SKILL_SELECTION;
+						update();
+						break;
+					}
+				} else {
+					if (event.getSlot() == UNLOCK_SKILL_SLOT) {
+						menuState = MenuState.SKILL_UNLOCK_CONFIRMATION;
+						update();
+						break;
+					} else if (event.getSlot() == BACK_SLOT) {
+						menuState = MenuState.SKILL_SELECTION;
+						update();
+						break;
+					}
+				}
 				break;
 			case SKILL_UPGRADE_CONFIRMATION:
-                    if (event.getSlot() == UPGRADE_YES_SLOT) {
-                        //to do
-                        getPlayer().closeInventory();
-                        break;
-                    } else if (event.getSlot() == UPGRADE_NO_SLOT) {
-                        menuState = MenuState.SKILL_OPTIONS;
-                        update();
-                        break;
-                    }
+				if (event.getSlot() == UPGRADE_YES_SLOT) {
+					//to do
+					getPlayer().closeInventory();
+					break;
+				} else if (event.getSlot() == UPGRADE_NO_SLOT) {
+					menuState = MenuState.SKILL_OPTIONS;
+					update();
+					break;
+				}
 				break;
 			case SKILL_UNLOCK_CONFIRMATION:
-                if (event.getSlot() == UNLOCK_YES_SLOT) {
-                    //to do
-                    getPlayer().closeInventory();
-                    break;
-                } else if (event.getSlot() == UNLOCK_NO_SLOT) {
-                    menuState = MenuState.SKILL_OPTIONS;
-                    update();
-                    break;
-                }
+				if (event.getSlot() == UNLOCK_YES_SLOT) {
+					if (getRpgPlayer().getActiveRPGCharacter().unlockSkill(chosenSkill)) {
+						getPlayer().sendMessage("You have unlocked the skill " + chosenSkill.name().replaceAll("_", " "));
+					} else {
+						getPlayer().sendMessage("You cannot unlock that skill");
+					}
+					getPlayer().closeInventory();
+					break;
+				} else if (event.getSlot() == UNLOCK_NO_SLOT) {
+					menuState = MenuState.SKILL_OPTIONS;
+					update();
+					break;
+				}
 				break;
 		}
 
