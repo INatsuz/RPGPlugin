@@ -13,7 +13,7 @@ public enum Skills {
     BUFF(new Swift(), new int[]{1, 0, 1, 0}, RPGClass.WIZARD, HEAL),
     GUARDIAN_ANGEL(new Swift(), new int[]{1, 0, 1, 1}, RPGClass.WIZARD, BUFF),
     FIREBALL(new Swift(), new int[]{1, 1, 1, 1}, RPGClass.WIZARD, SWIFT),
-    METEOR(new Swift(), new int[]{1, 1, 1, 0}, RPGClass.WIZARD, FIREBALL);
+    METEOR(new Meteor(), new int[]{1, 1, 1, 0}, RPGClass.WIZARD, FIREBALL);
 
     private final Skill skill;
     private final int[] sequence;

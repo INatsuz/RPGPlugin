@@ -22,7 +22,6 @@ public class InventoryClickListener implements Listener {
 			if (menu != null) {
 				menu.handleClick(event);
 				event.setCancelled(true);
-				System.out.println("This is definitely the inventory you're looking for 🌎");
 			}
 		}
 

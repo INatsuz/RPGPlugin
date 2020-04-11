@@ -23,8 +23,6 @@ public class PlayerInteractListener implements Listener {
 				}
 			}
 		}
-
-		System.out.println("Player Interact Event");
 	}
 
 }

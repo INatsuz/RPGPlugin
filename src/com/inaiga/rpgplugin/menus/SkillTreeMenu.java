@@ -69,7 +69,6 @@ public class SkillTreeMenu extends Menu {
 					update();
 					break;
 				} else if (event.getSlot() >= SKILL_SLOTS[0][0] && event.getSlot() <= SKILL_SLOTS[0][SKILL_SLOTS[0].length - 1]) {
-					System.out.println("Found first row skill");
 					chosenSkill = firstSkill.getNextSkills().get(0);
 					for (int i = 0; i < SKILL_SLOTS[0].length; i++) {
 						if (event.getSlot() == SKILL_SLOTS[0][i]) {
@@ -80,7 +79,6 @@ public class SkillTreeMenu extends Menu {
 						chosenSkill = chosenSkill.getNextSkills().get(0);
 					}
 				} else if (event.getSlot() >= SKILL_SLOTS[1][0] && event.getSlot() <= SKILL_SLOTS[1][SKILL_SLOTS[1].length - 1]) {
-					System.out.println("Found second row skill");
 					chosenSkill = firstSkill.getNextSkills().get(1);
 					for (int i = 0; i < SKILL_SLOTS[1].length; i++) {
 						if (event.getSlot() == SKILL_SLOTS[1][i]) {
@@ -173,7 +171,7 @@ public class SkillTreeMenu extends Menu {
 							firstSkill = firstSkill.getRequiredSkill();
 						}
 					} else {
-						System.out.println("Error: Couldn't find skill");
+						break;
 					}
 
 					ItemStack item = new ItemStack(skills.contains(firstSkill) ? SKILL_UNLOCKED : SKILL_LOCKED, 1);    //Creates CHARACTER_ITEM

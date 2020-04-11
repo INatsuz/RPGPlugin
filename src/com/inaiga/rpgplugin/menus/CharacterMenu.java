@@ -119,8 +119,6 @@ public class CharacterMenu extends Menu {
 					update();
 				}
 		}
-
-		System.out.println("Chill out, I'm handling it");
 	}
 
 	@Override
@@ -284,8 +282,6 @@ public class CharacterMenu extends Menu {
 				getMenuInventory().setItem(BACK_SLOT, item);   //Puts the item in the correspondent position
 
 				break;
-			default:
-				System.out.println("Nothing");
 		}
 	}
 

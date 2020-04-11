@@ -14,7 +14,6 @@ public class LoginLogoutListener implements Listener {
     @EventHandler
     public void PlayerJoin(PlayerJoinEvent event) {
         event.getPlayer().sendMessage("You have joined");
-        System.out.println("Player Join Event");
 
         PlayerManager.createPlayer(event.getPlayer());
     }
@@ -22,7 +21,6 @@ public class LoginLogoutListener implements Listener {
     //Saves an RPGPlayer when he logs out
     @EventHandler
     public void PlayerDisconnect(PlayerQuitEvent event) {
-        System.out.println("Player Quit Event");
 
         RPGPlayer rpgPlayer = PlayerManager.getRPGPlayerFromPlayer(event.getPlayer());
         if (rpgPlayer != null) {
