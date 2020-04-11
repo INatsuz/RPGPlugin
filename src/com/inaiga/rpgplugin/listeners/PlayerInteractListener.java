@@ -16,7 +16,7 @@ public class PlayerInteractListener implements Listener {
 				if (event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(value.getName())) {
 					if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 						value.onUse(event);
-					} else if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK) {
+					} else if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.PHYSICAL) {
 						value.onHit(event);
 					}
 
@@ -24,11 +24,14 @@ public class PlayerInteractListener implements Listener {
 				}
 			}
 		}
+<<<<<<< HEAD
 //		if (event.getPlayer().isSneaking() && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
 //			Skills.executeSkill(Skills.SNEAK, event.getPlayer());
 //		}
 
 		System.out.println("Player Interact Event");
+=======
+>>>>>>> testing
 	}
 
 }

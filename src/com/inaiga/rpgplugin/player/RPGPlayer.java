@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -185,11 +186,17 @@ public class RPGPlayer {
 				for (int i = 0; i < characterArray.size(); i++) {
 					JSONObject characterJson = (JSONObject) characterArray.get(i);    //Gets the Character on the respective index
 
-					RPGCharacters[i] = new RPGCharacter(RPGClass.valueOf(characterJson.get("class").toString()), Integer.parseInt(characterJson.get("level").toString()));    //Puts the Character in the Array of rpgCharacters
+					JSONArray skillsArray = (JSONArray) characterJson.get("skills");
+					ArrayList<Skills> skills = new ArrayList<>();
+					if(skillsArray != null && !skillsArray.isEmpty()) {
+						for (int k = 0; k < skillsArray.size(); k++) {
+							skills.add(Skills.valueOf((String) skillsArray.get(k)));
+						}
+					}
 
-					System.out.println(characterJson.get("class"));
-					System.out.println(characterJson.get("level"));
+					RPGCharacters[i] = new RPGCharacter(RPGClass.valueOf(characterJson.get("class").toString()), Integer.parseInt(characterJson.get("level").toString()), skills);    //Puts the Character in the Array of rpgCharacters
 				}
+				reader.close();
 			}
 
 		} catch (ParseException | IOException e) {
@@ -206,12 +213,18 @@ public class RPGPlayer {
 		JSONObject charactersObject = new JSONObject();    //Creates a JSON Object
 		JSONArray characterArray = new JSONArray();    //Creates a JSON Array
 
-		for (RPGCharacter RPGCharacter : rpgCharacters) {
-			if (RPGCharacter != null) {
+		for (RPGCharacter rpgCharacter : rpgCharacters) {
+			if (rpgCharacter != null) {
 				JSONObject characterJson = new JSONObject();    //Creates a JSON Object
 
-				characterJson.put("class", RPGCharacter.getCharacterRPGClass().toString());    //Adds the class to JSON Object
-				characterJson.put("level", RPGCharacter.getLevel());    //Adds the level to JSON Object
+				characterJson.put("class", rpgCharacter.getCharacterRPGClass().toString());    //Adds the class to JSON Object
+				characterJson.put("level", rpgCharacter.getLevel());    //Adds the level to JSON Object
+
+				JSONArray characterSkills = new JSONArray();
+				for (Skills skill : rpgCharacter.getSkills()) {
+					characterSkills.add(skill.name());
+				}
+				characterJson.put("skills", characterSkills);
 
 				characterArray.add(characterJson);    //Adds the CharacterJson to a JSON Array
 			}
@@ -276,9 +289,10 @@ public class RPGPlayer {
 			sendSequenceActionBar();
 
 			if (currentSequenceIndex == 0) {
-				for (Skills value : Skills.values()) {
-					if (Arrays.equals(value.getSequence(), abilitySequence)) {
-						Skills.executeSkill(value, player);
+				for (Skills skill : getActiveRPGCharacter().getSkills()) {
+					if (Arrays.equals(skill.getSequence(), abilitySequence)) {
+						Skills.executeSkill(skill, player);
+						player.sendMessage("Executing skill: " + skill);
 						break;
 					}
 				}
@@ -288,7 +302,6 @@ public class RPGPlayer {
 	}
 
 	private void sendSequenceActionBar() {
-		System.out.println(Arrays.toString(abilitySequence));
 		String command = "title " + player.getDisplayName() + " actionbar \"";
 		for (int i : abilitySequence) {
 			if (i == 1) {

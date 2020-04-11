@@ -3,6 +3,8 @@ package com.inaiga.rpgplugin;
 import com.inaiga.rpgplugin.characters.RPGCharacter;
 import com.inaiga.rpgplugin.classes.RPGClass;
 import com.inaiga.rpgplugin.customitems.CustomItems;
+import com.inaiga.rpgplugin.custommobs.CustomMobs;
+import com.inaiga.rpgplugin.listeners.DamageReceivedListener;
 import com.inaiga.rpgplugin.listeners.InventoryClickListener;
 import com.inaiga.rpgplugin.listeners.InventoryCloseListener;
 import com.inaiga.rpgplugin.listeners.LoginLogoutListener;
@@ -30,10 +32,15 @@ public class MainClass extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		getLogger().info("RPGPlugin just started!");
+
+		//Registering the event listeners
 		getServer().getPluginManager().registerEvents(new LoginLogoutListener(), this);
 		getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryCloseListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerInteractListener(), this);
+        getServer().getPluginManager().registerEvents(new DamageReceivedListener(),this);
+
+        //Storing the main instance of the plugin
         instance = this;
 	}
 
@@ -80,8 +87,8 @@ public class MainClass extends JavaPlugin {
 
 			return true;
 		//Opens the RPG Characters Selection Menu
-		} else if (label.equalsIgnoreCase("pickchar")) {
-			MenuManager.openMenuForPlayer((Player) sender, MenuType.CHARACTER_SELECTION_MENU);	//Opens the Menu
+		} else if (label.equalsIgnoreCase("skillmenu")) {
+			MenuManager.openMenuForPlayer((Player) sender, MenuType.SKILL_TREE_MENU);	//Opens the Menu
 
 			return true;
 		//Deletes a RPG Character
@@ -98,11 +105,24 @@ public class MainClass extends JavaPlugin {
 			}
 
 			return true;
-		} else if (label.equalsIgnoreCase("charmenuitem")) {
-		    Player player = (Player) sender;	//Get the RPG Player
+		} else if (label.equalsIgnoreCase("customitems")) {
+			//Get the RPG Player
+		    Player player = (Player) sender;
+
+		    //Gives all the custom items so far...
 			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.CHARACTER_MENU_ITEM));
 			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.STARTER_WAND_ITEM));
-		    return true;
+			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.INTERMEDIATE_WAND_ITEM));
+			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.STARTER_CHAIN_CHESTPLATE));
+
+			return true;
+        } else if (label.equalsIgnoreCase("custommob")) {
+			//Get the RPG Player
+		    Player player = (Player) sender;
+
+			CustomMobs.spawnCustomMob(CustomMobs.AZAROTH_ZOMBIE, player.getLocation());
+
+			return true;
         }
 
 		return super.onCommand(sender, command, label, args);	//Returns something

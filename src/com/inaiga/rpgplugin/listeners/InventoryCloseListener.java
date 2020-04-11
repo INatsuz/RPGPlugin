@@ -11,7 +11,6 @@ public class InventoryCloseListener implements Listener {
     @EventHandler
     public void InventoryClose(InventoryCloseEvent event){
         MenuManager.closeOpenMenuForPlayer((Player)event.getPlayer());
-        System.out.println("Inventory Close Event");
     }
 
 }
