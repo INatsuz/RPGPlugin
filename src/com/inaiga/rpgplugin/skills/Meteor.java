@@ -27,11 +27,13 @@ public class Meteor implements Skill{
 	}
 
 	@Override
-	public <T> void execute(T... args) {
-		Thread thread = new Thread(() -> runMeteor((Player) args[0]));
+	public <T> void execute(Player player, T... args) {
+		Thread thread = new Thread(() -> runMeteor(player));
 		thread.start();
 	}
 
+
+	//TODO - Apply damage, and add player targeting to the meteor skill
 	private void runMeteor(Player player){
 		Location startingLocation = player.getLocation().add(player.getEyeLocation().getDirection().multiply(5)).add(0, 15, 0);
 		Location endingLocation = player.getLocation().add(player.getEyeLocation().getDirection().multiply(20));

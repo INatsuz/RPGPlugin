@@ -7,9 +7,7 @@ import org.bukkit.potion.PotionEffectType;
 public class Sneak implements Skill {
 
 	@Override
-	public <T> void execute(T... args) {
-		Player player = (Player) args[0];
-
+	public <T> void execute(Player player, T... args) {
 		player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 5, 0, false, false), true);
 	}
 

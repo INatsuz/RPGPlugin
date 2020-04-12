@@ -14,5 +14,5 @@ The full attempt at a completely functional RPG style plugin for Minecraft
 -[ ] Skills
     - [X] Framework to create new skills
     - [ ] Create all the skills that are going to be used
--[ ] ~~Bulding~~
+-[ ] ~~Building~~
 -[ ] Groups

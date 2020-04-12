@@ -292,7 +292,6 @@ public class RPGPlayer {
 				for (Skills skill : getActiveRPGCharacter().getSkills()) {
 					if (Arrays.equals(skill.getSequence(), abilitySequence)) {
 						Skills.executeSkill(skill, player);
-						player.sendMessage("Executing skill: " + skill);
 						break;
 					}
 				}
