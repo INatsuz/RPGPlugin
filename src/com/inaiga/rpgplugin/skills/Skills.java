@@ -65,9 +65,7 @@ public enum Skills {
 	public ArrayList<Skills> getNextSkills() {
 		return nextSkills;
 	}
-
-
-
+	
 	public static <T> void executeSkill(Skills skill, Player player, T... args) {
 		RPGCharacter character = PlayerManager.getRPGPlayerFromPlayer(player).getActiveRPGCharacter();
 		if (!character.isOnCooldown(skill)) {
