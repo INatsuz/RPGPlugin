@@ -1,26 +1,25 @@
 package com.inaiga.rpgplugin.skills;
 
 import com.inaiga.rpgplugin.MainClass;
+import com.inaiga.rpgplugin.utils.TargetingUtils;
 import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
-import org.bukkit.entity.Bat;
+import org.bukkit.Sound;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 public class Meteor implements Skill {
 
 	private final static int RADIUS = 3;
-	private final static int SPEED = 10;
+	private final static int SPEED = 15;
 	private final static int RANGE = 50;
 	private final static int DAMAGE = 60;
+	private final static int TARGETING_RADIUS = 1;
 
 	private ArrayList<Vector> sphereVectors = new ArrayList<>();
 
@@ -44,16 +43,12 @@ public class Meteor implements Skill {
 		Location startingLocation = player.getLocation().add(playerDirection.multiply(5)).add(0, 15, 0);
 		Location endingLocation = null;
 
-		Bat entity = (Bat) player.getWorld().spawnEntity(player.getLocation().add(0, 200, 0), EntityType.BAT);
-		entity.setAI(false);
-		entity.setSilent(true);
-		entity.setInvulnerable(true);
-		entity.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 10, 1, false, false));
+		Entity entity = TargetingUtils.spawnTargetingEntity(player);
 
 		Location targetingLocation = player.getLocation();
 		for (int i = 0; i < RANGE; i++) {
 			entity.teleport(targetingLocation.add(playerDirection));
-			List<Entity> nearbyEntities = entity.getNearbyEntities(1, 1, 1);
+			List<Entity> nearbyEntities = entity.getNearbyEntities(TARGETING_RADIUS, TARGETING_RADIUS, TARGETING_RADIUS);
 
 			if (!nearbyEntities.isEmpty()) {
 				endingLocation = nearbyEntities.get(0).getLocation();
@@ -74,7 +69,6 @@ public class Meteor implements Skill {
 	}
 
 
-	//TODO - Apply damage, and add player targeting to the meteor skill
 	private void runMeteorAnimation(Player player, Location startingLocation, Location endingLocation, Entity entity) {
 		System.out.println("Hello from another thread");
 		Vector direction = endingLocation.clone().subtract(startingLocation).toVector().normalize();
@@ -97,13 +91,14 @@ public class Meteor implements Skill {
 		Bukkit.getScheduler().scheduleSyncDelayedTask(MainClass.getInstance(), () -> damageNearbyEntities(player, entity), 0);
 	}
 
-	private void damageNearbyEntities(Player player, Entity entity){
+	private void damageNearbyEntities(Player player, Entity entity) {
 		List<Entity> targetsToDamage = entity.getNearbyEntities(RADIUS, RADIUS, RADIUS);
 		for (Entity nearbyEntity : targetsToDamage) {
 			if (nearbyEntity instanceof Damageable) {
 				((Damageable) nearbyEntity).damage(DAMAGE, player);
 			}
 		}
+		entity.getWorld().playSound(entity.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 50, 1);
 
 		entity.remove();
 	}
