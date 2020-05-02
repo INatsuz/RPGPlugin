@@ -12,9 +12,9 @@ public enum Skills {
 	SNEAK(new Sneak(), 7, new int[]{1, 0, 0, 1}, RPGClass.ROGUE, BACKSTAB),
 
 	SWIFT(new Swift(), 10, new int[]{1, 0, 0, 0}, RPGClass.WIZARD, null),
-	HEAL(new Swift(), 10, new int[]{1, 0, 0, 1}, RPGClass.WIZARD, SWIFT), //TODO - Develop Heal skill
-	BUFF(new Swift(), 30, new int[]{1, 0, 1, 0}, RPGClass.WIZARD, HEAL), //TODO - Develop Buff skill
-	GUARDIAN_ANGEL(new Swift(), 60, new int[]{1, 0, 1, 1}, RPGClass.WIZARD, BUFF), //TODO - Develop Guardian Angel skill
+	HEAL(new Heal(), 10, new int[]{1, 0, 0, 1}, RPGClass.WIZARD, SWIFT), //TODO - Develop Heal skill
+	BUFF(new Buff(), 30, new int[]{1, 0, 1, 0}, RPGClass.WIZARD, HEAL), //TODO - Develop Buff skill
+	GUARDIAN_ANGEL(new GuardianAngel(), 60, new int[]{1, 0, 1, 1}, RPGClass.WIZARD, BUFF), //TODO - Develop Guardian Angel skill
 	FIREBALL(new Swift(), 15, new int[]{1, 1, 1, 1}, RPGClass.WIZARD, SWIFT), //TODO - Develop Fireball skill
 	METEOR(new Meteor(), 10, new int[]{1, 1, 1, 0}, RPGClass.WIZARD, FIREBALL);
 
