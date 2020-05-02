@@ -45,12 +45,14 @@ public class TargetingUtils {
 			entity.teleport(entity.getLocation().add(direction));
 			if (hasBlockCollision) {
 				if (!entity.getWorld().getBlockAt(entity.getLocation()).isPassable()) {
+					entity.remove();
 					return (Entity[]) entitiesInLine.toArray();
 				}
 			}
 
 			entitiesInLine.addAll(entity.getNearbyEntities(radius, radius, radius));
 		}
+
 		entity.remove();
 
 		return (Entity[]) entitiesInLine.toArray();
@@ -66,6 +68,7 @@ public class TargetingUtils {
 			entity.teleport(entity.getLocation().add(direction));
 			if (hasBlockCollision) {
 				if (!entity.getWorld().getBlockAt(entity.getLocation()).isPassable()) {
+					entity.remove();
 					return entitiesInLine;
 				}
 			}
@@ -73,6 +76,7 @@ public class TargetingUtils {
 
 			entitiesInLine.addAll(entity.getNearbyEntities(radius, radius, radius));
 		}
+
 		entity.remove();
 
 		return entitiesInLine;
@@ -87,6 +91,7 @@ public class TargetingUtils {
 			if (!entity.getNearbyEntities(radius, radius, radius).isEmpty()) {
 				for (Entity nearbyEntity : entity.getNearbyEntities(radius, radius, radius)) {
 					if (nearbyEntity != player) {
+						entity.remove();
 						return nearbyEntity;
 					}
 				}
