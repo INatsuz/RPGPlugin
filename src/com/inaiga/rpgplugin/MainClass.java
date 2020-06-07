@@ -114,6 +114,10 @@ public class MainClass extends JavaPlugin {
 			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.STARTER_WAND_ITEM));
 			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.INTERMEDIATE_WAND_ITEM));
 			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.STARTER_CHAIN_CHESTPLATE));
+			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.STARTER_ROGUE_CHESTPLATE));
+			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.STARTER_WIZARD_CHESTPLATE));
+			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.STARTER_GUARDIAN_CHESTPLATE));
+			player.getInventory().addItem(CustomItems.buildCustomItem(CustomItems.STARTER_RANGER_CHESTPLATE));
 
 			return true;
         } else if (label.equalsIgnoreCase("custommob")) {

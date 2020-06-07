@@ -13,6 +13,10 @@ public enum CustomItems {
 	INTERMEDIATE_WAND_ITEM("Intermediate Wand", Material.DEBUG_STICK, new IntermediateWand()),
 	CHARACTER_MENU_ITEM("Character Selection Menu", Material.COMPASS, new CharacterMenuItem()),
 	STARTER_CHAIN_CHESTPLATE("Starter Chain Chestplate", Material.CHAINMAIL_CHESTPLATE, new StarterChainChestplate()),
+	STARTER_ROGUE_CHESTPLATE("Starter Rogue Chestplate", Material.IRON_CHESTPLATE, new StarterRogueChestplate()),
+	STARTER_WIZARD_CHESTPLATE("Starter Wizard Chestplate", Material.GOLDEN_CHESTPLATE, new StarterWizardChestplate()),
+	STARTER_GUARDIAN_CHESTPLATE("Starter Guardian Chestplate", Material.IRON_CHESTPLATE, new StarterGuardianChestplate()),
+	STARTER_RANGER_CHESTPLATE("Starter Ranger Chestplate", Material.LEATHER_CHESTPLATE, new StarterRangerChestplate()),
 	USELESS_SUN_CAP("Useless Sun Cap", Material.LEATHER_HELMET, Color.BLACK, new UselessSunCap());
 
 	private final String name;
