@@ -10,7 +10,7 @@ import org.bukkit.potion.PotionEffectType;
 public class StarterRangerChestplate extends Armor {
 
     int speed=1;
-    float knockback=0.1f;
+    float knockback=0.5f;
     public StarterRangerChestplate() {
         super(10);
     }
@@ -25,7 +25,7 @@ public class StarterRangerChestplate extends Armor {
             Entity attacker= event.getDamager();
             Entity attacked= event.getEntity();
 
-            attacked.setVelocity(attacked.getVelocity().add(attacked.getLocation().toVector().subtract(attacker.getLocation().toVector().normalize().multiply(knockback))));
+            attacker.setVelocity(attacker.getLocation().getDirection().normalize().multiply(-1*knockback));
         }
     }
 }
