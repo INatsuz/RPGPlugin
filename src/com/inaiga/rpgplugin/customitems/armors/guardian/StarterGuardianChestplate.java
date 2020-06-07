@@ -1,5 +1,6 @@
-package com.inaiga.rpgplugin.customitems;
+package com.inaiga.rpgplugin.customitems.armors.guardian;
 
+import com.inaiga.rpgplugin.customitems.armors.Armor;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -7,7 +8,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
 
-public class StarterGuardianChestplate extends Armor{
+public class StarterGuardianChestplate extends Armor {
 
     public StarterGuardianChestplate() {
         super(30);

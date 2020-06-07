@@ -1,5 +1,6 @@
-package com.inaiga.rpgplugin.customitems;
+package com.inaiga.rpgplugin.customitems.armors.rogue;
 
+import com.inaiga.rpgplugin.customitems.armors.Armor;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -7,7 +8,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
 
-class StarterRogueChestplate extends Armor {
+public class StarterRogueChestplate extends Armor {
 
     //Nota:100 equivale a 5 secs ; 20 faz como se fosse um flash (pretty cool)
     private final int BLIND_EFFECT = 30;   //blind duration

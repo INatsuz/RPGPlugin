@@ -1,14 +1,14 @@
-package com.inaiga.rpgplugin.customitems;
+package com.inaiga.rpgplugin.customitems.armors.wizard;
 
+import com.inaiga.rpgplugin.customitems.armors.Armor;
 import org.bukkit.entity.Arrow;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
 
-class StarterWizardChestplate extends Armor {
+public class StarterWizardChestplate extends Armor {
     public StarterWizardChestplate() {
         super(10);
     }

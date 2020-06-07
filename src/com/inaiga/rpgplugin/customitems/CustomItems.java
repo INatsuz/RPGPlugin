@@ -1,5 +1,16 @@
 package com.inaiga.rpgplugin.customitems;
 
+import com.inaiga.rpgplugin.customitems.armors.guardian.StarterGuardianChestplate;
+import com.inaiga.rpgplugin.customitems.armors.ranger.StarterRangerChestplate;
+import com.inaiga.rpgplugin.customitems.armors.rogue.StarterRogueChestplate;
+import com.inaiga.rpgplugin.customitems.armors.WearableItem;
+import com.inaiga.rpgplugin.customitems.armors.wizard.StarterWizardChestplate;
+import com.inaiga.rpgplugin.customitems.armors.misc.StarterChainChestplate;
+import com.inaiga.rpgplugin.customitems.armors.misc.UselessSunCap;
+import com.inaiga.rpgplugin.customitems.utility.CharacterMenuItem;
+import com.inaiga.rpgplugin.customitems.weapons.UsableItem;
+import com.inaiga.rpgplugin.customitems.weapons.wizard.IntermediateWand;
+import com.inaiga.rpgplugin.customitems.weapons.wizard.StarterWand;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;

@@ -1,6 +1,7 @@
 package com.inaiga.rpgplugin.customitems;
 
 import com.inaiga.rpgplugin.classes.RPGClass;
+import com.inaiga.rpgplugin.customitems.weapons.UsableItem;
 import com.inaiga.rpgplugin.player.RPGPlayer;
 import java.util.ArrayList;
 import java.util.Arrays;

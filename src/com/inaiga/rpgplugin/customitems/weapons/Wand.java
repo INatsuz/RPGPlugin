@@ -1,6 +1,7 @@
-package com.inaiga.rpgplugin.customitems;
+package com.inaiga.rpgplugin.customitems.weapons;
 
 import com.inaiga.rpgplugin.classes.RPGClass;
+import com.inaiga.rpgplugin.customitems.ClassUsableItem;
 import com.inaiga.rpgplugin.player.PlayerManager;
 import com.inaiga.rpgplugin.player.RPGPlayer;
 import com.inaiga.rpgplugin.utils.TargetingUtils;

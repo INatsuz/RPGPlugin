@@ -1,4 +1,6 @@
-package com.inaiga.rpgplugin.customitems;
+package com.inaiga.rpgplugin.customitems.armors.misc;
+
+import com.inaiga.rpgplugin.customitems.armors.Armor;
 
 public class UselessSunCap extends Armor {
 

@@ -1,5 +1,6 @@
-package com.inaiga.rpgplugin.customitems;
+package com.inaiga.rpgplugin.customitems.utility;
 
+import com.inaiga.rpgplugin.customitems.weapons.UsableItem;
 import com.inaiga.rpgplugin.menus.MenuManager;
 import com.inaiga.rpgplugin.menus.MenuType;
 import org.bukkit.event.player.PlayerInteractEvent;
