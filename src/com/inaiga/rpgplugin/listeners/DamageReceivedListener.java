@@ -1,6 +1,6 @@
 package com.inaiga.rpgplugin.listeners;
 
-import com.inaiga.rpgplugin.customitems.Armor;
+import com.inaiga.rpgplugin.customitems.armors.Armor;
 import com.inaiga.rpgplugin.customitems.CustomItems;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

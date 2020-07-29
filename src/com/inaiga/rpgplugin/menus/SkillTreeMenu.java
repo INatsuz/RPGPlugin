@@ -128,7 +128,7 @@ public class SkillTreeMenu extends Menu {
 			case SKILL_UNLOCK_CONFIRMATION:
 				if (event.getSlot() == UNLOCK_YES_SLOT) {
 					if (getRpgPlayer().getActiveRPGCharacter().unlockSkill(chosenSkill)) {
-						getPlayer().sendMessage("You have unlocked the skill " + chosenSkill.name().replaceAll("_", " "));
+						getPlayer().sendMessage("You have unlocked the skill " + chosenSkill.toString());
 					} else {
 						getPlayer().sendMessage("You cannot unlock that skill");
 					}

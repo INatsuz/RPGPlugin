@@ -1,12 +1,12 @@
 package com.inaiga.rpgplugin.skills;
 
-import com.inaiga.rpgplugin.player.RPGPlayer;
+import org.bukkit.entity.Player;
 
 public class Backstab implements Skill{
 
 	@Override
-	public <T> void execute(T ...args) {
-		RPGPlayer rpgPlayer = (RPGPlayer) args[0];
+	public <T> void execute(Player player, T ...args) {
+
 	}
 
 }

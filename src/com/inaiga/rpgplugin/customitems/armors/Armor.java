@@ -1,4 +1,4 @@
-package com.inaiga.rpgplugin.customitems;
+package com.inaiga.rpgplugin.customitems.armors;
 
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 

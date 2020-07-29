@@ -1,5 +1,16 @@
 package com.inaiga.rpgplugin.customitems;
 
+import com.inaiga.rpgplugin.customitems.armors.guardian.StarterGuardianChestplate;
+import com.inaiga.rpgplugin.customitems.armors.ranger.StarterRangerChestplate;
+import com.inaiga.rpgplugin.customitems.armors.rogue.StarterRogueChestplate;
+import com.inaiga.rpgplugin.customitems.armors.WearableItem;
+import com.inaiga.rpgplugin.customitems.armors.wizard.StarterWizardChestplate;
+import com.inaiga.rpgplugin.customitems.armors.misc.StarterChainChestplate;
+import com.inaiga.rpgplugin.customitems.armors.misc.UselessSunCap;
+import com.inaiga.rpgplugin.customitems.utility.CharacterMenuItem;
+import com.inaiga.rpgplugin.customitems.weapons.UsableItem;
+import com.inaiga.rpgplugin.customitems.weapons.wizard.IntermediateWand;
+import com.inaiga.rpgplugin.customitems.weapons.wizard.StarterWand;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -13,6 +24,10 @@ public enum CustomItems {
 	INTERMEDIATE_WAND_ITEM("Intermediate Wand", Material.DEBUG_STICK, new IntermediateWand()),
 	CHARACTER_MENU_ITEM("Character Selection Menu", Material.COMPASS, new CharacterMenuItem()),
 	STARTER_CHAIN_CHESTPLATE("Starter Chain Chestplate", Material.CHAINMAIL_CHESTPLATE, new StarterChainChestplate()),
+	STARTER_ROGUE_CHESTPLATE("Starter Rogue Chestplate", Material.IRON_CHESTPLATE, new StarterRogueChestplate()),
+	STARTER_WIZARD_CHESTPLATE("Starter Wizard Chestplate", Material.GOLDEN_CHESTPLATE, new StarterWizardChestplate()),
+	STARTER_GUARDIAN_CHESTPLATE("Starter Guardian Chestplate", Material.IRON_CHESTPLATE, new StarterGuardianChestplate()),
+	STARTER_RANGER_CHESTPLATE("Starter Ranger Chestplate", Material.LEATHER_CHESTPLATE, new StarterRangerChestplate()),
 	USELESS_SUN_CAP("Useless Sun Cap", Material.LEATHER_HELMET, Color.BLACK, new UselessSunCap());
 
 	private final String name;

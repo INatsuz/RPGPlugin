@@ -1,12 +1,13 @@
-package com.inaiga.rpgplugin.customitems;
+package com.inaiga.rpgplugin.customitems.armors.misc;
 
+import com.inaiga.rpgplugin.customitems.armors.Armor;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.projectiles.ProjectileSource;
 
-class StarterChainChestplate extends Armor {
+public class StarterChainChestplate extends Armor {
 
     private final int FIRE_DURATION = 5;
 
