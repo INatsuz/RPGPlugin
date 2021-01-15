@@ -8,7 +8,7 @@ public class Sneak implements Skill {
 
 	@Override
 	public <T> void execute(Player player, T... args) {
-		player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 5, 0, false, false), true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 5, 0, false, false));
 	}
 
 }

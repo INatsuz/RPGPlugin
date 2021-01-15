@@ -12,13 +12,21 @@ public class AzarothZombie implements CustomMob {
 	@Override
 	public void onSpawn(Entity entity) {
 		Zombie zombie = (Zombie) entity;
-		zombie.setBaby(false);
-		zombie.getEquipment().setChestplate(CustomItems.buildCustomItem(CustomItems.STARTER_CHAIN_CHESTPLATE));
+		zombie.setAdult();
+		if (zombie.getEquipment() != null) {
+			zombie.getEquipment().setChestplate(CustomItems.buildCustomItem(CustomItems.STARTER_CHAIN_CHESTPLATE));
+		}
 		zombie.setLootTable(null);
-		zombie.getAttribute(Attribute.GENERIC_ARMOR).setBaseValue(0);
-		zombie.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(1000);
+		if (zombie.getAttribute(Attribute.GENERIC_ARMOR) != null) {
+			zombie.getAttribute(Attribute.GENERIC_ARMOR).setBaseValue(0);
+		}
+		if (zombie.getAttribute(Attribute.GENERIC_MAX_HEALTH) != null) {
+			zombie.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(1000);
+		}
+		if (zombie.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED) != null) {
+			zombie.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(1.5);
+		}
 		zombie.setHealth(1000);
-		zombie.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(1.5);
 	}
 
 	@Override

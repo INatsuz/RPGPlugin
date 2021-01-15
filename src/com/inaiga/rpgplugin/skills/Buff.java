@@ -21,7 +21,7 @@ public class Buff implements Skill {
 		if (entity == null) {
 			player.addPotionEffect(POTION_EFFECT);
 		} else if (entity instanceof Player) {
-			((Player) entity).addPotionEffect(POTION_EFFECT, true);
+			((Player) entity).addPotionEffect(POTION_EFFECT);
 		}
 	}
 
