@@ -38,14 +38,6 @@ public class DamageReceivedListener implements Listener {
 							totalProtection += ((Armor) item.getClassInstance()).getProtection();
 							item.onHitTaken(event);
 						}
-//						for (CustomItems value : CustomItems.values()) {
-//							if (value.getClassInstance() instanceof Armor) {
-//								if (armorPiece.getItemMeta().getDisplayName().equalsIgnoreCase(value.getName())) {
-//									totalProtection += ((Armor) value.getClassInstance()).getProtection();
-//									value.onHitTaken(event);
-//								}
-//							}
-//						}
 					}
 				}
 

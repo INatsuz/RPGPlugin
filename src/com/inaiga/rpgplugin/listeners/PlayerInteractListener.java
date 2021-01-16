@@ -22,18 +22,6 @@ public class PlayerInteractListener implements Listener {
 					}
 				}
 			}
-
-//			for (CustomItems value : CustomItems.values()) {
-//				if (event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(value.getName())) {
-//					if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-//						value.onUse(event);
-//					} else if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK) {
-//						value.onHit(event);
-//					}
-//
-//					break;
-//				}
-//			}
 		}
 	}
 

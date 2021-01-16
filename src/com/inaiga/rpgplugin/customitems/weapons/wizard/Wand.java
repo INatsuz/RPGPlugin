@@ -39,36 +39,6 @@ public class Wand extends ClassItem implements Usable {
 						((Damageable) targetEntity).damage(DAMAGE, event.getPlayer());
 					}
 				}
-//
-//				Vector direction = event.getPlayer().getEyeLocation().getDirection().clone().normalize();
-//
-//				Bat entity = (Bat) event.getPlayer().getWorld().spawnEntity(event.getPlayer().getLocation().add(0, 200, 0), EntityType.BAT);
-//				entity.setAI(false);
-//				entity.setSilent(true);
-//				entity.setInvulnerable(true);
-//				entity.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 10, 1, false, false));
-//				for (int i = 0; i < RANGE; i++) {
-//					Vector newVector = direction.clone().multiply(i);
-//					Location currentSpellLocation = event.getPlayer().getEyeLocation().add(newVector);
-//
-//					if (event.getPlayer().getWorld().getBlockAt(currentSpellLocation).getBlockData().getMaterial().isSolid()) {
-//						break;
-//					}
-//
-//					event.getPlayer().getWorld().spawnParticle(Particle.CRIT, currentSpellLocation, 5, 0.3, 0.3, 0.3, 0.05, null);
-//
-//					entity.teleport(currentSpellLocation);
-//					List<Entity> entityList = entity.getNearbyEntities(1, 1, 1);
-//
-//					entityList.forEach(entityItem -> {
-//						if (entityItem instanceof Damageable && entityItem != event.getPlayer()) {
-//							((Damageable) entityItem).damage(DAMAGE, event.getPlayer());
-//						}
-//					});
-//
-//				}
-//
-//				entity.remove();
 			}
 
 			rpgPlayer.handleInteraction(false);
