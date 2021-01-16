@@ -2,7 +2,7 @@ package com.inaiga.rpgplugin.customitems.armors;
 
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-public class Armor implements WearableItem {
+public class Armor implements Wearable {
 
 	public final int protection;
 

@@ -1,7 +1,8 @@
-package com.inaiga.rpgplugin.customitems.weapons;
+package com.inaiga.rpgplugin.customitems.weapons.wizard;
 
 import com.inaiga.rpgplugin.classes.RPGClass;
-import com.inaiga.rpgplugin.customitems.ClassUsableItem;
+import com.inaiga.rpgplugin.customitems.ClassItem;
+import com.inaiga.rpgplugin.customitems.Usable;
 import com.inaiga.rpgplugin.player.PlayerManager;
 import com.inaiga.rpgplugin.player.RPGPlayer;
 import com.inaiga.rpgplugin.utils.TargetingUtils;
@@ -11,7 +12,7 @@ import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class Wand extends ClassUsableItem {
+public class Wand extends ClassItem implements Usable {
 
 	private final int DAMAGE;
 	private final int RANGE;

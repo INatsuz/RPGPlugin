@@ -9,23 +9,24 @@ import org.bukkit.potion.PotionEffectType;
 
 public class StarterRangerChestplate extends Armor {
 
-    int speed=1;
-    float knockback=0.5f;
-    public StarterRangerChestplate() {
-        super(10);
-    }
+	int speed = 1;
+	float knockback = 0.5f;
 
-    @Override
-    public void onHitTaken(EntityDamageByEntityEvent event){
-        super.onHitTaken(event);
+	public StarterRangerChestplate() {
+		super(10);
+	}
 
-        ((Player) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SPEED,speed,1));
+	@Override
+	public void onHitTaken(EntityDamageByEntityEvent event) {
+		super.onHitTaken(event);
 
-        if (event.getDamager() instanceof Player) {
-            Entity attacker= event.getDamager();
-            Entity attacked= event.getEntity();
+		((Player) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SPEED, speed, 1));
 
-            attacker.setVelocity(attacker.getLocation().getDirection().normalize().multiply(-1*knockback));
-        }
-    }
+		if (event.getDamager() instanceof Player) {
+			Entity attacker = event.getDamager();
+			Entity attacked = event.getEntity();
+
+			attacker.setVelocity(attacker.getLocation().getDirection().normalize().multiply(-1 * knockback));
+		}
+	}
 }

@@ -1,11 +1,11 @@
 package com.inaiga.rpgplugin.customitems.utility;
 
-import com.inaiga.rpgplugin.customitems.weapons.UsableItem;
+import com.inaiga.rpgplugin.customitems.Usable;
 import com.inaiga.rpgplugin.menus.MenuManager;
 import com.inaiga.rpgplugin.menus.MenuType;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class CharacterMenuItem implements UsableItem {
+public class CharacterMenuItem implements Usable {
 
 	@Override
 	public void onHit(PlayerInteractEvent event) {

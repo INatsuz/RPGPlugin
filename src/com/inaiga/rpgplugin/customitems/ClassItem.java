@@ -1,16 +1,15 @@
 package com.inaiga.rpgplugin.customitems;
 
 import com.inaiga.rpgplugin.classes.RPGClass;
-import com.inaiga.rpgplugin.customitems.weapons.UsableItem;
 import com.inaiga.rpgplugin.player.RPGPlayer;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public abstract class ClassUsableItem implements UsableItem {
+public abstract class ClassItem implements CustomItem {
 
 	private ArrayList<RPGClass> classes = new ArrayList<>();
 
-	public ClassUsableItem(RPGClass... classes) {
+	public ClassItem(RPGClass... classes) {
 		this.classes.addAll(Arrays.asList(classes.length > 0 ? classes : RPGClass.values()));
 	}
 
