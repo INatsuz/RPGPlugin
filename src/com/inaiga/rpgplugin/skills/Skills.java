@@ -24,7 +24,7 @@ public enum Skills {
 	private final int cooldown;
 
 	private final Skills requiredSkill;
-	private ArrayList<Skills> nextSkills = new ArrayList<>();
+	private final ArrayList<Skills> nextSkills = new ArrayList<>();
 
 	Skills(Skill skill, int cooldown, int[] sequence, RPGClass rpgClass, Skills requiredSkill) {
 		this.skill = skill;
@@ -66,6 +66,7 @@ public enum Skills {
 		return nextSkills;
 	}
 	
+	@SafeVarargs
 	public static <T> void executeSkill(Skills skill, Player player, T... args) {
 		RPGCharacter character = PlayerManager.getRPGPlayerFromPlayer(player).getActiveRPGCharacter();
 		if (!character.isOnCooldown(skill)) {

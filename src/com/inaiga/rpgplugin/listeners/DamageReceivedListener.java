@@ -1,18 +1,31 @@
 package com.inaiga.rpgplugin.listeners;
 
+import com.inaiga.rpgplugin.customitems.CustomItem;
+import com.inaiga.rpgplugin.customitems.CustomItemManager;
 import com.inaiga.rpgplugin.customitems.armors.Armor;
 import com.inaiga.rpgplugin.customitems.CustomItems;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class DamageReceivedListener implements Listener {
 
 	@EventHandler
 	public void onEntityDamage(EntityDamageByEntityEvent event) {
 		if (event != null) {
+			if (event.getDamager() instanceof Player) {
+				ItemStack itemInHand = ((Player) event.getDamager()).getInventory().getItemInMainHand();
+				ItemMeta itemMeta = itemInHand.getItemMeta();
+				if (itemMeta != null) {
+					CustomItems item = CustomItemManager.getCustomItemByName(itemMeta.getDisplayName());
+					item.onStrike(event);
+				}
+			}
+
 			if (event.getEntity() instanceof Player) {
 				Player player = (Player) event.getEntity();
 
@@ -20,13 +33,10 @@ public class DamageReceivedListener implements Listener {
 				ItemStack[] armorEquipped = player.getInventory().getArmorContents();
 				for (ItemStack armorPiece : armorEquipped) {
 					if (armorPiece != null) {
-						for (CustomItems value : CustomItems.values()) {
-							if (value.getClassInstance() instanceof Armor) {
-								if (armorPiece.getItemMeta().getDisplayName().equalsIgnoreCase(value.getName())) {
-									totalProtection += ((Armor) value.getClassInstance()).getProtection();
-									value.onHitTaken(event);
-								}
-							}
+						CustomItems item = CustomItemManager.getCustomItemByName(armorPiece.getItemMeta().getDisplayName());
+						if (armorPiece.getItemMeta().getDisplayName().equalsIgnoreCase(item.getName())) {
+							totalProtection += ((Armor) item.getClassInstance()).getProtection();
+							item.onHitTaken(event);
 						}
 					}
 				}
