@@ -112,10 +112,19 @@ public class RPGCharacter {
 		return true;
 	}
 
+	/**
+	 * Returns Character level
+	 *
+	 * @return The {@link java.util.HashSet} with all the skill cooldowns
+	 */
 	public HashSet<Skills> getCooldowns() {
 		return cooldowns;
 	}
 
+	/**
+	 * Adds cooldown to a skill
+	 * @param skill A {@link com.inaiga.rpgplugin.skills.Skills} to put on cooldown
+	 */
 	public void putOnCooldown(Skills skill) {
 		cooldowns.add(skill);
 		Timer timer = new Timer();
