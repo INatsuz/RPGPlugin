@@ -11,6 +11,8 @@ import com.inaiga.rpgplugin.listeners.LoginLogoutListener;
 import com.inaiga.rpgplugin.listeners.PlayerInteractListener;
 import com.inaiga.rpgplugin.menus.MenuManager;
 import com.inaiga.rpgplugin.menus.MenuType;
+import com.inaiga.rpgplugin.npcs.NPC;
+import com.inaiga.rpgplugin.npcs.NPCManager;
 import com.inaiga.rpgplugin.player.PlayerManager;
 import com.inaiga.rpgplugin.player.RPGPlayer;
 import org.bukkit.command.Command;
@@ -127,7 +129,11 @@ public class MainClass extends JavaPlugin {
 			CustomMobs.spawnCustomMob(CustomMobs.AZAROTH_ZOMBIE, player.getLocation());
 
 			return true;
-        }
+        } else if (label.equalsIgnoreCase("npc")) {
+			Player player = (Player) sender;
+
+			NPCManager.spawnNPC(NPC.defaultNPC, player.getLocation());
+		}
 
 		return super.onCommand(sender, command, label, args);	//Returns something
 	}

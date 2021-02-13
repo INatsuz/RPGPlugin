@@ -33,3 +33,7 @@ commands:
     usage: /custommob
     description: Spawns the current test custom mob
     permission-message: You don't have the permission to do this command.
+  npc:
+    usage: /npc
+    description: Spawns an NPC
+    permission-message: You don't have the permission to do this command.
